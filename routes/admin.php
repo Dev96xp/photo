@@ -42,7 +42,7 @@ Route::resource('proof', ProofController::class)->names('proof');
 Route::post('proof/{gallery}/save_images/', [ProofController::class,'save_images'])->name('proof.save_images');
 Route::get('proof/{gallery}/upload_images', [ProofController::class,'upload_images'])->name('proof.upload_images'); //Dropzone
 
-Route::resource('business', BusinessController::class)->names('business');
+Route::resource('business', BusinessController::class)->names('business')->except(['update']);
 Route::post('business/{business}/update/', [BusinessController::class,'update'])->name('business.update');
 
 
