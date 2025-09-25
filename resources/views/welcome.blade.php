@@ -64,9 +64,6 @@
         <div class="w-full h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-100 relative bg-center bg-no-repeat bg-cover hover:opacity-75"
             style="background-image: url('{{ Storage::url($headImage) }}')">
 
-            {{-- <div class="background
-
-
 
 
             <div class="absolute left-10 lg:left-20 bottom-20">
