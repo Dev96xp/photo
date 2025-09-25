@@ -1,28 +1,32 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-zX9swvuU.css",
+    "file": "assets/app-Lv79GH1z.css",
+    "src": "resources/css/app.css",
     "isEntry": true,
-    "src": "resources/css/app.css"
+    "names": [
+      "app.css"
+    ]
   },
   "resources/images/close.png": {
-    "file": "assets/close-3ibo5ueZ.png",
+    "file": "assets/close-DeJujm55.png",
     "src": "resources/images/close.png"
   },
   "resources/images/loading.gif": {
-    "file": "assets/loading-WP_hRmif.gif",
+    "file": "assets/loading-BY_-FGaJ.gif",
     "src": "resources/images/loading.gif"
   },
   "resources/images/next.png": {
-    "file": "assets/next-EFXDbXTY.png",
+    "file": "assets/next-QVcNtdNi.png",
     "src": "resources/images/next.png"
   },
   "resources/images/prev.png": {
-    "file": "assets/prev-VR6g7K5G.png",
+    "file": "assets/prev-BVHqDsrk.png",
     "src": "resources/images/prev.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-8vezzgaX.js",
-    "isEntry": true,
-    "src": "resources/js/app.js"
+    "file": "assets/app-Bj43h_rG.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
   }
 }
