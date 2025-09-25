@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     {
 
         //1
-        //Permission::create(['name' => 'Crear cursos',]);
+        Permission::create(['name' => 'Crear cursos',]);
         //2
         Permission::create(['name' => 'Leer cursos',]);
         //3

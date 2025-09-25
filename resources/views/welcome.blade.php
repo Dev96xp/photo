@@ -61,8 +61,10 @@
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-64 py-40 opacity-75 relative bg-center bg-no-repeat bg-cover hover:opacity-100"
             style="background-image: url('{{ asset('img/gallery/25003786-6b3c-453e-9885-5d275016dbb7.jpg') }}')">        --}}
 
-        <div class="w-full h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-75 relative bg-center bg-no-repeat bg-cover hover:opacity-100"
+        <div class="w-full h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-0 relative bg-center bg-no-repeat bg-cover hover:opacity-0"
             style="background-image: url('{{ Storage::url($headImage) }}')">
+
+            {{-- <div class="background
 
 
 
