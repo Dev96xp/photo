@@ -61,27 +61,33 @@
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-64 py-40 opacity-75 relative bg-center bg-no-repeat bg-cover hover:opacity-100"
             style="background-image: url('{{ asset('img/gallery/25003786-6b3c-453e-9885-5d275016dbb7.jpg') }}')">        --}}
 
-        <div class="w-full h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-100 relative bg-center bg-no-repeat bg-cover hover:opacity-75"
-            style="background-image: url('{{ Storage::url($headImage) }}')">
 
 
+         <div>
+            <div class="w-full h-screen/2 lg:h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-100 relative bg-center bg-no-repeat bg-cover hover:opacity-75"
+                style="background-image: url('{{ Storage::url($headImage) }}')">
 
-            <div class="absolute left-10 lg:left-20 bottom-20">
-                {{-- APLICANDO UNA CONDICIONAL PARA CLASES --}}
-                <p class="text-gray-800 font-bold text-5xl md:text-8xl lg:text-8xl py-6" style="font-family: Montserrat">
-                    {{ $business->name }}</p>
-                <p class="text-white text-xl md:text-5xl lg:text-5xl font-bold" style="font-family: Montserrat">
-                    {{ $business->slogan }}
-                </p>
-                <p class="text-black font-bold text-xl mt-2 mb-4" style="font-family: Montserrat">
-                    {{ $business->description }}
-                </p>
 
-                {{-- COVER Creditos
-                <p class="text-white font-bold" style="font-family: Montserrat"></p> --}}
+                <div class="absolute left-10 lg:left-20 bottom-20">
+
+                    <p class="text-gray-400 font-bold text-5xl md:text-8xl lg:text-8xl py-6"
+                        style="font-family: Montserrat">
+                        {{ $business->name }}</p>
+                    <p class="text-white text-xl md:text-5xl lg:text-5xl font-bold" style="font-family: Montserrat">
+                        {{ $business->slogan }}
+                    </p>
+                    <p class="text-black font-bold text-xl mt-2 mb-4" style="font-family: Montserrat">
+                        {{ $business->description }}
+                    </p>
+
+
+                <p class="text-white font-bold" style="font-family: Montserrat"></p>
+                </div>
+
             </div>
-
         </div>
+
+
 
     </section>
 
@@ -266,7 +272,9 @@
         style="background-image: url('{{ Storage::url($fullImage2) }}')">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
             <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">Relax and comfort for your events</h1>
+                <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">Relax and
+                    comfort
+                    for your events</h1>
                 {{-- <h1 class="text-white text-bold text-4xl">
                     Means
                 </h1>
@@ -377,8 +385,8 @@
 
             <article>
                 <figure>
-                    <img class="rounded-lg h-60 w-full object-cover" src="{{ asset('img/home/web_specials_002.jpg') }}"
-                        alt="">
+                    <img class="rounded-lg h-60 w-full object-cover"
+                        src="{{ asset('img/home/web_specials_002.jpg') }}" alt="">
                     <header class="mt-4">
                         <a href="#">
                             <h1 class="text-center text-xl text-gray-700 font-bold">$300.00 OFF Any quinceañera dress
