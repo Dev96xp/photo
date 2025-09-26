@@ -228,7 +228,7 @@
                 <figure>
                     {{-- <img class="rounded-xl lg:h-40 w-full object-cover opacity-75"
                         src="{{ asset('img/home/DSC_3035.jpg') }}" alt=""> --}}
-                    <img class="rounded-sm lg:h-40 w-full object-cover opacity-75" src="{{ Storage::url($article4) }}"
+                    <img class="rounded-sm lg:h-80 w-full object-cover opacity-75" src="{{ Storage::url($article4) }}"
                         alt="article4">
 
                     <header class="mt-2">
