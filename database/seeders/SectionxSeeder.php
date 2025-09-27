@@ -18,6 +18,7 @@ class SectionxSeeder extends Seeder
             'status' => 'ACTIVE',
             'note' => 'key - headImage',
             'page_id' => 1,
+            'description' => '3840 x 1920px',
         ]);
         Sectionx::create([
             'name' => 'At your service',

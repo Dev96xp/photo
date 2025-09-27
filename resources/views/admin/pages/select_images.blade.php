@@ -6,6 +6,7 @@
 @section('content_header')
     <h1>Select images para la seccion: {{ $sectionx->name }} </h1>
     <div>Special notes: {{ $sectionx->note }}</div>
+    <div>More notes: {{ $sectionx->description }}</div>
 @stop
 
 {{-- INSTALAR DROPZONE
