@@ -39,7 +39,8 @@
                                         </div>
                                         <div class="ml-4">
                                             <div class="font-bold text-gray-900">{{ $sectionx->name }}</div>
-                                            <div class="text-gray-500">...</div>
+                                            <div class="text-gray-500">{{ $sectionx->description }}</div>
+
                                         </div>
                                     </div>
                                 </td>
