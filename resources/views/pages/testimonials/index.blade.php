@@ -41,55 +41,48 @@
                     <figure
                         class="col-span-2 hidden sm:block sm:rounded-2xl sm:bg-white sm:shadow-lg sm:ring-1 sm:ring-gray-900/5 xl:col-start-2 xl:row-end-1">
                         <blockquote class="p-12 text-xl font-semibold leading-8 tracking-tight text-gray-900">
-                            <p>“Agradesco tanto el servicio que me brindaron, siempre tan atentos a mi evento, fue tan
-                                facil tener
-                                mi evento, y todo salio como deseaba, 10 de 10, THE PALACE HALL, lo super recomiendo
-                                mi hija bailo y disfruto su quinceañera”</p>
+                            <p>{{$testimonial1}}</p>
                         </blockquote>
                         <figcaption class="flex items-center gap-x-4 border-t border-gray-900/10 px-6 py-4">
                             <img class="h-10 w-10 flex-none rounded-full bg-gray-50"
-                                src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                src="{{ Storage::url($testi_image1) }}" alt="">
                             <div class="flex-auto">
-                                <div class="font-semibold">Joanna Martinez</div>
-                                <div class="text-gray-600">@joannamartinez</div>
+                                <div class="font-semibold">{{ $testi_name1 }}</div>
+                                <div class="text-gray-600">{{ $testi_note1 }}</div>
                             </div>
                             <img class="h-10 w-auto flex-none"
                                 src="https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg" alt="">
                         </figcaption>
                     </figure>
 
+
                     <div class="space-y-8 xl:contents xl:space-y-0">
                         <div class="space-y-8 xl:row-span-2">
 
                             <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
                                 <blockquote class="text-gray-900">
-                                    <p>“Fue todo un dia lleno de sorpresas, la mas importante es el servicio con que
-                                        contaba
-                                        THE PALACE HALL, un salon comfortable para mi quinceañera, muy amplio, limpio, y
-                                        con un personal de excelencia...totalmente recomendado.”</p>
+                                    <p>{{$testimonial2}}</p>
                                 </blockquote>
                                 <figcaption class="mt-6 flex items-center gap-x-4">
                                     <img class="h-10 w-10 rounded-full bg-gray-50"
-                                        src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                        src="{{ Storage::url($testi_image2) }}" alt="">
                                     <div>
-                                        <div class="font-semibold">Alejandra Suarez</div>
-                                        <div class="text-gray-600">@alejandrasuarez</div>
+                                        <div class="font-semibold">{{ $testi_name2 }}</div>
+                                        <div class="text-gray-600">{{ $testi_note2 }}</div>
                                     </div>
                                 </figcaption>
                             </figure>
 
                             <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
                                 <blockquote class="text-gray-900">
-                                    <p>“Hermoso lucio THE PALACE HALL, su decoracion muy bonita y elegante, era tan
-                                        perfecto todo
-                                        que solo me quedo disfrutar mi quinceañera, lo recomiendo para todo evento.”</p>
+                                    <p>{{$testimonial3}}</p>
                                 </blockquote>
                                 <figcaption class="mt-6 flex items-center gap-x-4">
                                     <img class="h-10 w-10 rounded-full bg-gray-50"
-                                        src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                        src="{{ Storage::url($testi_image3) }}" alt="">
                                     <div>
-                                        <div class="font-semibold">Leslie Lopez</div>
-                                        <div class="text-gray-600">@leslielopez</div>
+                                        <div class="font-semibold">{{ $testi_name3 }}</div>
+                                        <div class="text-gray-600">{{ $testi_note3 }}</div>
                                     </div>
                                 </figcaption>
                             </figure>
@@ -99,15 +92,14 @@
                         <div class="space-y-8 xl:row-start-1">
                             <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
                                 <blockquote class="text-gray-900">
-                                    <p>“Nunca pense que el salon estaba tan bonito, me encanto todo y la spista de
-                                        baile iluminada, todo muy hermoso, THE PALACE HALL TEAM.”</p>
+                                    <p>{{$testimonial4}}</p>
                                 </blockquote>
                                 <figcaption class="mt-6 flex items-center gap-x-4">
                                     <img class="h-10 w-10 rounded-full bg-gray-50"
-                                        src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                        src="{{ Storage::url($testi_image4) }}" alt="">
                                     <div>
-                                        <div class="font-semibold">Jacqueline Rodriguez</div>
-                                        <div class="text-gray-600">@lindsaywalton</div>
+                                        <div class="font-semibold">{{ $testi_name4 }}</div>
+                                        <div class="text-gray-600">{{ $testi_note4 }}</div>
                                     </div>
                                 </figcaption>
                             </figure>
@@ -119,17 +111,14 @@
                         <div class="space-y-8 xl:row-start-1">
                             <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
                                 <blockquote class="text-gray-900">
-                                    <p>“Wow, espectacular THE PALACE HALL, muy elegante y muy espacioso, todo mundo se
-                                        divirtio
-                                        mucho cuando bailaba en esa enorme pista de crital, estaba espectacular,
-                                        todo muy bonito y limpio”</p>
+                                    <p>{{$testimonial5}}</p>
                                 </blockquote>
                                 <figcaption class="mt-6 flex items-center gap-x-4">
                                     <img class="h-10 w-10 rounded-full bg-gray-50"
-                                        src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                        src="{{ Storage::url($testi_image5) }}" alt="">
                                     <div>
-                                        <div class="font-semibold">Maribel Hernandez</div>
-                                        <div class="text-gray-600">@maribelhernandez</div>
+                                        <div class="font-semibold">{{ $testi_name5 }}</div>
+                                        <div class="text-gray-600">{{ $testi_note5 }}</div>
                                     </div>
                                 </figcaption>
                             </figure>
@@ -139,22 +128,14 @@
                         <div class="space-y-8 xl:row-span-2">
                             <figure class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5">
                                 <blockquote class="text-gray-900">
-                                    <p>“El servicio de THE PALACE HALL TEAM, son un personal tan agradable, que me
-                                        ayudaron con todo
-                                        inclusive me dejaron trater mi propia comida y un dia antes pude practicar mi
-                                        baile sorpresa
-                                        la musica tenia todo lo necesario ara conectar su equipo y si cortes de
-                                        electricidad, todo me
-                                        encanto, su decoracion es muy bonita y elegante, y siempre al pendiente de la
-                                        limpieza, ademas
-                                        de contar un equipo de seguridad. ”</p>
+                                    <p>{{$testimonial6}}</p>
                                 </blockquote>
                                 <figcaption class="mt-6 flex items-center gap-x-4">
                                     <img class="h-10 w-10 rounded-full bg-gray-50"
-                                        src="{{ asset('img/home/thecastle.jpg') }}" alt="">
+                                        src="{{ Storage::url($testi_image6) }}" alt="">
                                     <div>
-                                        <div class="font-semibold">Leonardo Sanchez</div>
-                                        <div class="text-gray-600">@leonardosanchez</div>
+                                        <div class="font-semibold">{{ $testi_name6 }}</div>
+                                        <div class="text-gray-600">{{ $testi_note6 }}</div>
                                     </div>
                                 </figcaption>
                             </figure>

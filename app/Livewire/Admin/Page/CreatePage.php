@@ -15,8 +15,6 @@ class CreatePage extends Component
     // PARA QUE LOS VALORES APARESCAN EN EL FORMULARIO
     // ESTO ME PERMITIRA USAR LAS PROPIEDADES DEL OBJETO EN EL FORMULARIO
 
-
-
     protected $rules = [
         'name' => 'required|max:30',
         'description' => 'required',

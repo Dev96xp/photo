@@ -40,4 +40,24 @@ class PageSections extends Component
         //dd($item);
     }
 
+        public function update_status($id)
+    {
+        $sectionx = Sectionx::find($id);
+
+        switch ($sectionx->status) {
+            case 'ACTIVE':
+                $sectionx->status = 'INACTIVE';
+                break;
+            case 'INACTIVE':
+                $sectionx->status = 'ACTIVE';
+                break;
+            default:
+                $sectionx->status = 'INACTIVE';
+                break;
+        }
+
+        $sectionx->save();
+
+    }
+
 }

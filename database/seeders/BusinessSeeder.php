@@ -14,9 +14,9 @@ class BusinessSeeder extends Seeder
     public function run(): void
     {
         Business::create([
-            'name' => 'THE PALACE HALL',
+            'name' => 'Artisan Studios',
             'slogan' => 'Experiance and aptitude of our team',
-            'description' => 'Perfect for hosting Weddings, Receptions, Corporate Events, Private Celebrations and More!',
+            'description' => 'Weddings',
             'address' => '3001 S 144th St',
             'city' => 'Omaha',
             'state' => 'NE',

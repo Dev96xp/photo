@@ -46,4 +46,32 @@ class PageIndex extends Component
         // 4. En este caso para actualizar la lista de productos
         $this->dispatch('render-list');
     }
+
+    public function update_status($id)
+    {
+        $page = Page::find($id);
+
+        switch ($page->status) {
+            case 'ACTIVE':
+                $page->status = 'INACTIVE';
+                break;
+
+            case 'INACTIVE':
+                $page->status = 'HIDE';
+                break;
+
+            case 'HIDE':
+                $page->status = 'ACTIVE';
+                break;
+
+            default:
+                $page->status = 'INACTIVE';
+                break;
+        }
+
+        $page->save();
+
+        // 4. En este caso para actualizar la lista de productos
+        $this->dispatch('render-list');
+    }
 }

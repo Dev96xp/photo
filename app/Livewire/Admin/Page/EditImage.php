@@ -20,8 +20,11 @@ class EditImage extends Component
 
     // 1.  Crear una propiedad que tenga los mismos campos del formulario
     public $imageEdit = [
+        'name' => 'required',
         'location' => 'required',
         'description' =>'required',
+        'note' => 'required',
+        'note1' => 'required',
     ];
 
     public function mount(Image $image){
@@ -35,8 +38,11 @@ class EditImage extends Component
 
 
         // Muesta estos valores en el formulario
+        $this->imageEdit['name'] = $image->name;
         $this->imageEdit['location'] = $image->location;
         $this->imageEdit['description'] = $image->description;
+        $this->imageEdit['note'] = $image->note;
+        $this->imageEdit['note1'] = $image->note1;
     }
 
     public function render()
@@ -45,8 +51,11 @@ class EditImage extends Component
         $this->imageEditId = $this->image->id;
 
         // Muesta estos valores en el formulario
+        $this->imageEdit['name'] = $this->image->name;
         $this->imageEdit['location'] = $this->image->location;
         $this->imageEdit['description'] = $this->image->description;
+        $this->imageEdit['note'] = $this->image->note;
+        $this->imageEdit['note1'] = $this->image->note1;
 
         return view('livewire.admin.page.edit-image');
     }
@@ -62,8 +71,11 @@ class EditImage extends Component
         $image = Image::find($this->imageEditId);
 
         $image->update([
+            'name' => $this->imageEdit['name'],
             'location' => $this->imageEdit['location'],
             'description' => $this->imageEdit['description'],
+            'note' => $this->imageEdit['note'],
+            'note1' => $this->imageEdit['note1'],
         ]);
 
         $this->reset(['open','imageEdit','imageEditId']);

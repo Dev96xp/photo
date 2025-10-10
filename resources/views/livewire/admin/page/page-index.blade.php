@@ -8,7 +8,7 @@
             {{-- <button type="button"
                 class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
                 page</button> --}}
-                @livewire('admin.page.create-page')
+            @livewire('admin.page.create-page')
         </div>
     </div>
     <div class="mt-8 flow-root">
@@ -19,7 +19,8 @@
                         <tr>
                             <th scope="col"
                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Route/Active
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Route/Active
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status
                             </th>
@@ -41,7 +42,9 @@
                                                 alt="">
                                         </div>
                                         <div class="ml-4">
-                                            <div class="font-bold {{ $selecionado == $page->name ? 'text-blue-500 text-md' : '' }}">{{ $page->name }} </div>
+                                            <div
+                                                class="font-bold {{ $selecionado == $page->name ? 'text-blue-500 text-md' : '' }}">
+                                                {{ $page->name }} </div>
                                             <div class="text-gray-500">{{ $page->description }}</div>
                                         </div>
                                     </div>
@@ -52,10 +55,38 @@
                                     <div class="text-gray-500">{{ $page->active }}</div>
                                 </td>
 
-                                <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
-                                    <span
-                                        class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">{{ $page->status }}</span>
+
+                                <td class="px-6 py-4 whitespace-nowrap">
+
+                                    @switch($page->status)
+                                        @case('ACTIVE')
+                                            <span>
+                                                <buttons class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
+                                                    wire:click="update_status({{ $page->id }})">
+                                                    {{ $page->status }}</buttons>
+                                            </span>
+                                        @break
+
+                                        @case('INACTIVE')
+                                            <span>
+                                                <buttons class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"
+                                                    wire:click="update_status({{ $page->id }})">
+                                                    {{ $page->status }}</buttons>
+                                            </span>
+                                        @break
+
+                                        @case('HIDE')
+                                            <span>
+                                                <buttons class="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
+                                                    wire:click="update_status({{ $page->id }})">
+                                                    {{ $page->status }}</buttons>
+                                            </span>
+                                        @break
+
+                                        @default
+                                    @endswitch
                                 </td>
+
 
                                 <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">Member</td>
 

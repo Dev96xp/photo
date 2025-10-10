@@ -1,11 +1,12 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-gray-700">Sections for <span class="text-blue">{{ $page->name }}</span></h1>
+            <h1 class="text-base font-semibold leading-6 text-gray-700">Sections for <span
+                    class="text-blue">{{ $page->name }}</span></h1>
         </div>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                {{-- Button --}}
-                @livewire('admin.page.create-section', ['page' => $page], key($page->id))
+            {{-- Button --}}
+            @livewire('admin.page.create-section', ['page' => $page], key($page->id))
         </div>
     </div>
 
@@ -46,19 +47,49 @@
                                 </td>
 
                                 <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
-                                    <span
-                                        class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
+
+                                    @switch($sectionx->status)
+                                        @case('ACTIVE')
+                                            <span>
+                                                <buttons
+                                                    class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
+                                                    wire:click="update_status({{ $sectionx->id }})">
+                                                    {{ $sectionx->status }}</buttons>
+                                            </span>
+                                        @break
+
+                                        @case('INACTIVE')
+                                            <span>
+                                                <buttons
+                                                    class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"
+                                                    wire:click="update_status({{ $sectionx->id }})">
+                                                    {{ $sectionx->status }}</buttons>
+                                            </span>
+                                        @break
+
+                                        @default
+                                    @endswitch
                                 </td>
+
 
                                 <td width="10px">
                                     <a class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
                                         href="{{ route('admin.pages.select_images', $sectionx) }}">Photos</a>
                                 </td>
 
-                                <td wire:click="delete_section({{ $sectionx }})"
+                                {{-- <td wire:click="delete_section({{ $sectionx }})"
                                     class="relative text-red-600 hover:text-red-900 whitespace-nowrap py-1 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     Delete
-                                </td>
+                                </td> --}}
+
+                                {{-- <td wire:click="edit_section({{ $sectionx }})"
+                                    class="relative text-blue-600 hover:text-blue-900 whitespace-nowrap py-1 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                    Edit
+                                </td> --}}
+
+                                {{-- <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
+                                    @livewire('admin.page.edit-section', ['sectionx' => $sectionx], key($sectionx->id))
+                                </td> --}}
 
                             </tr>
                         @endforeach

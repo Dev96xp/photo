@@ -1,72 +1,28 @@
 <x-app-layout>
 
-    {{-- <style>
-
-        .container {
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-
-        }
-
-        .content {
-            text-align: center;
-
-            position: absolute;
-            right: center;
-            bottom: 20px;
-        }
-
-        .content h1 {
-            font-size: 95px;
-            color: #fff;
-            margin-bottom: 50px;
-        }
-
-        .content a {
-            font-size: 23px;
-            color: #fff;
-            text-decoration: none;
-            border: 2px solid #fff;
-            padding: 15px 25px;
-            border-radius: 50px;
-            transition: 0.3s
-        }
-
-        .background-clip {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-        }
-    </style> --}}
-
-
     {{-- USO: PAGINA PRINCIPAL - HOME NO 1 --}}
-    {{-- SECCTION 1 - Head Image  IMAGEN PRINCIPAL, style="display:none" --}}
-    <section>
+    {{-- RUTA: resources/views/welcome.blade.php --}}
+    {{-- CONTROLADOR: app/Http/Controllers/HomeController.php --}}
+    {{-- MODELO: app/Models/Sectionx.php --}}
+    {{-- SEEDER: database/seeders/SectionxSeeder.php --}}
+
+    {{-- SECCTION 1 - Principal Image of the website --}}
+    <section style="{{ $active1 == 'ACTIVE' ? '' : 'display:none' }}">
 
         {{-- Moño --}}
         {{-- <img style="width:50%" class="z-10 absolute bottom-0 left-0" src="{{ asset('img/home/AdobeStock_292882187.png') }}" alt=""> --}}
 
-        {{-- py- Determina la altura de la imagen --}}
-        {{-- MASTER CLASS - PARALLAX EFFECT - (bg-fixed bg-center bg-no-repeat bg-cover, EN ESTE CASO ELIMINE FIXED, PARA QUE TRABAJARA BIEN EN MOBIL)
+        {{-- MASTER CLASS - PARALLAX EFFECT - (bg-fixed bg-center bg-no-repeat bg-cover)
                                          min-h-screen - OCUPA TODA LA ALTURA DE PANTALLA
                                          opacity-75 - Detremina la opacity Inicial
-                                         hover:opacity-100 - Elimina el opacity
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-64 py-40 opacity-75 relative bg-center bg-no-repeat bg-cover hover:opacity-100"
-            style="background-image: url('{{ asset('img/gallery/25003786-6b3c-453e-9885-5d275016dbb7.jpg') }}')">        --}}
-
-
-
+                                         hover:opacity-100 - Elimina el opacity --}}
         <div>
-            <div class="relative ">
+            <div class="relative">
+
+                {{-- Imagen Principal --}}
+
                 <div class="w-full h-screen/2 lg:h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-100 bg-center bg-no-repeat bg-cover hover:opacity-75"
-                    style="background-image: url('{{ Storage::url($headImage) }}')">
+                    style="background-image: url('{{ Storage::url($mainImage) }}')">
 
 
                     <div class="absolute left-10 lg:left-20 bottom-2 lg:bottom-20">
@@ -86,41 +42,42 @@
                     </div>
 
                 </div>
+
+
+                {{-- Logo png --}}
+                {{-- top-1/2             Centra el objeto verticalmente (de la esquina superior izquierda de el mismo)
+                         left-1/2            Centra el objeto horizontalmente (de la esquina superior izquierda de el mismo)
+                         -translate-x-1/2    Mueve el objeto verticalmente la mitad de su propio ancho, para centrarlo
+                         -translate-y-1/2    Mueve el objeto horizontalmente la mitad de su propio ancho, para centrarlo
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto">
+                    <img class="h-20 lg:h-40" src="{{ Storage::url($logo1) }}"
+                            alt="logo1.png">
+                </div>
+--}}
             </div>
         </div>
-
-
-
     </section>
 
-    {{-- <section>
-        <picture>
-            <source media="(max-width: 799px)" srcset="{{ asset('img/home/pexels-matheus-bertelli-17023014.jpg') }}">
-            <source media="(min-width: 800px)" srcset="{{ asset('img/home/pexels-matheus-bertelli-17023020.jpg') }}">
-            <img src="" alt="Chris standing up holding his daughter Elva">
-          </picture>
-    </section> --}}
 
-
-
-    {{-- VIDEO --}}
-    <section>
+    {{-- SECCTION 2 - Principal Video --}}
+    <section style="{{ $active2 == 'ACTIVE' ? '' : 'display:none' }}">
 
         {{-- MASTER CLASS - metodo 3" autoplay loop muted plays-inline" autoplay="on" --}}
-        {{-- <div class="w-full relative">
+        <div class="w-full relative">
             <video autoplay loop muted plays-inline class="w-full">
-                <source src="/img/home/Video_bodas.mp4" type='video/mp4'>
+                <source src="/img/video/morilee.mp4" type='video/mp4'>
             </video>
 
             <div class="content absolute bottom-4 md:bottom-6 lg:bottom-6 left-10 lg:left-40 ">
                 <p class="text-black text-3xl sm:text-8xl lg:text-8xl pt-6 pb-2" style="font-family: Sche">
                     {{ $business->name }}</p>
-                <p class="text-white text-xl md:text-5xl lg:text-5xl font-bold lg:mb-60" style="font-family: Montserrat">
+                <p class="text-white text-xl md:text-5xl lg:text-5xl font-bold lg:mb-60"
+                    style="font-family: Montserrat">
                     {{ $business->slogan }}
                 </p>
 
             </div>
-        </div> --}}
+        </div>
 
 
 
@@ -149,10 +106,11 @@
     </section>
 
 
-    {{-- SECCTION 2 - At your service - Contenido con 4 articulos --}}
-    <section class="mt-6">
+    {{-- SECCTION 3 - Articles - Contenido con 4 articulos --}}
+    <section class="mt-6" style="{{ $active3 == 'ACTIVE' ? '' : 'display:none' }}">
         <h1 class="text-gray-800 text-center text-4xl mb-6 font-bold"
-            style="my-6 font-family: proxima-nova, sans-serif;font-weight: 800;font-style: normal">AT YOUR SERVICE
+            style="my-6 font-family: proxima-nova, sans-serif;font-weight: 800;font-style: normal">
+            {{ $section3_note2 }}
         </h1>
 
         <div {{-- max-w-7xl --}}
@@ -168,14 +126,12 @@
 
                     <header class="mt-2">
                         <a href="gallery">
-                            <h1 class="text-center text-xl text-gray-700">Weddings</h1>
+                            <h1 class="text-center text-xl text-gray-700">{{ $name_article1 }}</h1>
                         </a>
                     </header>
 
                     <a href="gallery" class="mt-2">
-                        <p>From an intimate ceremony to a lavish formal gala, you can make your special day what you
-                            have
-                            always dreamed. Our main dining room can be arranged to suit your wishes</p>
+                        <p>{{ $description_article1 }}</p>
                     </a>
 
                 </figure>
@@ -188,14 +144,11 @@
                         alt="article2">
                     <header class="mt-2">
                         <a href="#">
-                            <h1 class="text-center text-xl text-gray-700">Events</h1>
+                            <h1 class="text-center text-xl text-gray-700">{{ $name_article2 }}</h1>
                         </a>
                     </header>
                     <a href="#" class="mt-2">
-                        <p>If you book your event at this location, you can expect to see lots of natural light, on a
-                            beuatifull cozy large space for until 500 people
-                            Moreover, the Venue is
-                            located on the mall with free parking and can be accessed via public transport</p>
+                        <p>{{ $description_article2 }}</p>
                     </a>
 
                 </figure>
@@ -210,16 +163,11 @@
                     </a>
                     <header class="mt-2">
                         <a href="gallery">
-                            <h1 class="text-center text-xl text-gray-700">Quinceañeras</h1>
+                            <h1 class="text-center text-xl text-gray-700">{{ $name_article3 }}</h1>
                         </a>
                     </header>
                     <a href="gallery" class="mt-2">
-                        <p>If you’re looking for a Quinceañera venue that offers something for everyone, then THE PALACE
-                            HALL
-                            Event Center is your perfect fit, you’ll be able to
-                            accommodate as many or as few guests as desired. No matter what the occasion, we are
-                            confident
-                            that your Quinceañera will be the most memorable event of your life!</p>
+                        <p>{{ $description_article3 }}</p>
                     </a>
                 </figure>
             </article>
@@ -233,31 +181,24 @@
                         alt="article4">
 
                     <header class="mt-2">
-                        <h1 class="text-center text-xl text-gray-700">Professional and Bueatifull</h1>
+                        <h1 class="text-center text-xl text-gray-700">{{ $name_article4 }}</h1>
                     </header>
-                    <p>Their portfolio spans weddings of all kind, each specifically designed to speak to the essence of
-                        each couple’s
-                        unique preferences and tastes.</p>
+                    <p>{{ $description_article4 }}</p>
                 </figure>
             </article>
         </div>
     </section>
 
 
-    {{-- SECCTION 6 - Banda de productos --}}
-    <section class="my-24 mx-auto px-4 sm:px-6 lg:px-64">
-        <h1 class="text-center text-3xl text-gray-600">Events Type</h1>
+    {{-- SECCTION 4 - Type of Services --}}
+    <section class="my-24 mx-auto px-4 sm:px-6 lg:px-64" style="{{ $active4 == 'ACTIVE' ? '' : 'display:none' }}">
+        <h1 class="text-center text-3xl text-gray-600">{{ $section4_note2 }}</h1>
         <p class="text-center text-gray-500 text-xl mb-6"> </p>
 
         <div class="text-center">
-            <h2>Wedding Receptions</h2>
-            <h2>Corporate Events</h2>
-            <h2>Holiday Parties</h2>
-            <h2>Anniversaries</h2>
-            <h2>Graduations</h2>
-            <h2>Birthdays</h2>
-            <h2>Reunions</h2>
-            <h2>Showers</h2>
+            <p class="text-lg">{{ $section4_desc }}</p>
+
+
         </div>
 
         {{-- Product Card --}}
@@ -269,39 +210,43 @@
         </div>
     </section>
 
-    {{-- FullImage 2 --}}
-    <section class="mt-16 opacity-75 relative bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
-        style="background-image: url('{{ Storage::url($fullImage2) }}')">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
-            <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">Relax and
-                    comfort
-                    for your events</h1>
-                {{-- <h1 class="text-white text-bold text-4xl">
+
+    {{-- SECCTION 5 - LargeImage A --}}
+    <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
+        <section class="mt-16 opacity-75 relative bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
+            style="background-image: url('{{ Storage::url($largeImageA) }}')">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
+                <div class="w-full md:w-3/4 lg:w-1/2">
+                    <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
+                        {{ $name_largeImageA }}</h1>
+                    {{-- <h1 class="text-white text-bold text-4xl">
                     Means
                 </h1>
                 <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
                     Easy Access to Decorating Experts Ensuring Quality Outputs from Concept to Completion
                 </p> --}}
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    {{-- CALENDAR de fechas disponibles --}}
-    <section>
+
+    {{-- SECCTION 6 - Calendar --}}
+    <section style="{{ $active6 == 'ACTIVE' ? '' : 'display:none' }}">
         <div>
             @livewire('availability-calendar')
         </div>
     </section>
 
 
-    {{-- Location and Address --}}
-    <section class="mt-12">
+    {{-- SECCTION 7 - Location --}}
+    <section class="mt-12" style="{{ $active7 == 'ACTIVE' ? '' : 'display:none' }}">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-8">
 
             <div class="col-span-1 mt-8 opacity-75 hover:opacity-100">
-                <img src="{{ Storage::url($whereIWork) }}" alt="whereIWork" class="rounded-md" style="width:100%">
+                <img src="{{ Storage::url($locationImage) }}" alt="locationImage" class="rounded-md"
+                    style="width:100%">
             </div>
 
             <div class="col-span-2 ml-4">
@@ -328,34 +273,29 @@
     </section>
 
 
-    {{-- SECCTION 5 --}}
-    {{-- MASTER CLASS - PARALLAX EFFECT - (bg-fixed bg-center bg-no-repeat bg-cover)
-                                         min-h-screen - OCUPA TODA LA ALTURA DE PANTALLA
-                                         opacity-75 - Detremina la opacity Inicial
-                                         hover:opacity-100 - Elimina el opacity --}}
+    {{-- SECCTION 8 - LargeImage B --}}
+    <div style="{{ $active8 == 'ACTIVE' ? '' : 'display:none' }}">
+        <section class="mt-16 opacity-75 relative bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
+            style="background-image: url('{{ Storage::url($largeImageB) }}')">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
+                <div class="w-full md:w-3/4 lg:w-1/2">
+                    <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
+                        {{ $name_largeImageB }}</h1>
+                    <h1 class="text-white text-bold text-4xl">
+                        {{ $note_largeImageB }}
+                    </h1>
+                    <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
+                        {{ $desc_largeImageB }}
+                    </p>
 
-    {{-- footImagen1 --}}
-    <section class="mt-16 opacity-75 relative bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
-        style="background-image: url('{{ Storage::url($footImage1) }}')">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
-            <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">Working with
-                    Best
-                    Wedding planners</h1>
-                <h1 class="text-white text-bold text-4xl">
-                    Means
-                </h1>
-                <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                    Easy Access to Decorating Experts Ensuring Quality Outputs from Concept to Completion
-                </p>
-
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 
-    {{-- SECCTION 4 - SPECIALS - Banda OCULTADA Contenido Specials of the week --}}
-    <section class="my-16" style="display:none">
+    {{-- SECCTION 9 - Specials of the week --}}
+    <section class="my-16" style="{{ $active9 == 'ACTIVE' ? '' : 'display:none' }}">
         <h1 class="text-gray-600 text-center text-3xl mb-6 font-bold" style="font-family:Montserrat">SPECIALS OF THE
             MONTH</h1>
         <div
@@ -363,23 +303,16 @@
             <article>
                 <figure>
                     <a href="#"><img class="rounded-lg lg:h-60 w-full object-cover"
-                            src="{{ asset('img/home/web_coupon_001.jpg') }}" alt=""></a>
+                            src="{{ Storage::url($special1) }}" alt="special1"></a>
 
                     <header class="mt-4">
                         <a href="#">
-                            <h1 class="text-center text-xl text-gray-700 font-bold">$500 OFF on Privated Collection
-                            </h1>
+                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special1 }}</h1>
                         </a>
                     </header>
 
                     <a href="#">
-                        <p>Obten un coupon de 500dll en la compra de un vestido de la collection privada, incluyendo la
-                            collection Dubai.
-                            La collection estara disponible al publico,
-                            este evento seran todos los dias del mes de febrero en Oakview Mall.
-                            Solamente se puede
-                            aplicar un solo coupon a la vez, por producto.
-                        </p>
+                        <p>{{ $description_special1 }}</p>
                     </a>
 
                 </figure>
@@ -387,22 +320,17 @@
 
             <article>
                 <figure>
-                    <img class="rounded-lg h-60 w-full object-cover" src="{{ asset('img/home/web_specials_002.jpg') }}"
-                        alt="">
+                    <img class="rounded-lg h-60 w-full object-cover" src="{{ Storage::url($special2) }}"
+                        alt="special2">
+
                     <header class="mt-4">
                         <a href="#">
-                            <h1 class="text-center text-xl text-gray-700 font-bold">$300.00 OFF Any quinceañera dress
-                            </h1>
+                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special2 }}</h1>
                         </a>
                     </header>
+
                     <a href="#">
-                        <p> Coupon $300dll, cualquier vestido de quinceañera, que no sea de la collection privada, el
-                            espcial
-                            tendra lugar en todas las tiendas, todo el mes de febrero
-                            solo presenta este
-                            anuncio a la tienda, para hacerlo valido. Solamente se puede aplicar un solo coupon a la
-                            vez, por producto.
-                        </p>
+                        <p>{{ $description_special2 }}</p>
                     </a>
 
                 </figure>
@@ -410,20 +338,19 @@
 
             <article>
                 <figure>
-                    <img class="rounded-lg h-60 w-full object-cover"
-                        src="{{ asset('img/home/web_coupon_damas_003.jpg') }}" alt="">
-                    <header class="mt-2">
-                        <h1 class="text-center text-xl text-gray-700 font-bold">$50.00 OFF Any damas dress, for 5 o
-                            more
-                        </h1>
+                    <img class="rounded-lg h-60 w-full object-cover" src="{{ Storage::url($special3) }}"
+                        alt="special3">
+
+                    <header class="mt-4">
+                        <a href="#">
+                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special3 }}</h1>
+                        </a>
                     </header>
-                    <p>Pudes obtener un coupon de $50.00 de descuento en cualquier vestido de damas, cuando pones una
-                        orden
-                        de un grupo igual o mayor a 5 piezas, Valido: todo el mes de febrero, en cualquiera
-                        de nuestras sucursales, solo presenta este
-                        anuncio a la tienda, para hacerlo valido. Solamente se puede aplicar un solo coupon a la vez,
-                        por producto.
-                    </p>
+
+                    <a href="#">
+                        <p>{{ $description_special3 }}</p>
+                    </a>
+
                 </figure>
             </article>
 
@@ -431,8 +358,9 @@
         </div>
     </section>
 
-    {{-- Footer --}}
-    <section>
+
+    {{-- SECCTION 10 - Contact Info --}}
+    <section style="{{ $active10 == 'ACTIVE' ? '' : 'display:none' }}">
         <!-- component -->
         {{-- <div class="flex items-end w-full min-h-screen bg-white">  ORIGINAL --}}
         <div class="flex items-end w-full bg-white">

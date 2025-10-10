@@ -16,7 +16,7 @@ class PageSeeder extends Seeder
         Page::create([
             'name' => 'Home',
             'description' => 'Page 1 - Home',
-            'route' => 'home',
+            'route' => '/',
             'active' => 'home',
             'status' => 'ACTIVE',
 

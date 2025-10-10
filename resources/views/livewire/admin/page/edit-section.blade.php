@@ -10,7 +10,7 @@
     <x-dialog-modal wire:model="open" class="py-6" maxWidth="2xl">
 
         <x-slot name='title'>
-            Editar Imagen
+            Edit Section Data
         </x-slot>
 
         <x-slot name='content'>
@@ -19,9 +19,9 @@
             <div class="grid grid-cols-3 gap-4 mb-2">
                 <div class="col-span-2">
                     <x-label value="Name" />
-                    <x-input wire:model.defer="imageEdit.name" type="text" class="w-full" />
+                    <x-input wire:model.defer="sectionxEdit.name" type="text" class="w-full" />
                     {{-- Revisa por alhun error de validacion --}}
-                    <x-input-error for="imageEdit.name" />
+                    <x-input-error for="sectionxEdit.name" />
                 </div>
 
                 <div class="col-span-1">
@@ -31,53 +31,41 @@
 
             <div class="grid grid-cols-3 gap-4 mb-2">
                 <div class="col-span-2">
-                    <x-label value="Location" />
-                    <x-input wire:model.defer="imageEdit.location" type="text" class="w-full" />
-                    {{-- Revisa por alhun error de validacion --}}
-                    <x-input-error for="imageEdit.location" />
+                    <x-label value="Note2" />
+                    <x-input wire:model.defer="sectionxEdit.note2" type="text" class="w-full" />
+                    <x-input-error for="sectionxEdit.note2" />
                 </div>
 
                 <div class="col-span-1">
 
                 </div>
             </div>
-            <div class="grid grid-cols-3 gap-4 mb-2">
-                <div class="col-span-2">
-                    <x-label value="Note" />
-                    <x-input wire:model.defer="imageEdit.note" type="text" class="w-full" />
-                    {{-- Revisa por alhun error de validacion --}}
-                    <x-input-error for="imageEdit.note" />
-                </div>
-
-                <div class="col-span-1">
-                </div>
-            </div>
-            <div class="grid grid-cols-3 gap-4 mb-2">
-                <div class="col-span-2">
-                    <x-label value="Note 1" />
-                    <x-input wire:model.defer="imageEdit.note1" type="text" class="w-full" />
-                    {{-- Revisa por alhun error de validacion --}}
-                    <x-input-error for="imageEdit.note1" />
-                </div>
-
-                <div class="col-span-1">
-
-                </div>
-            </div>
-
             <div class="grid grid-cols-3 gap-4 mb-2">
                 <div class="col-span-2">
                     <x-label value="Description" />
-                    <textarea wire:model.defer="imageEdit.description" type="text" cols="20" rows="5" class="w-full"></textarea>
-
+                    <textarea wire:model.defer="sectionxEdit.description" type="text" cols="20" rows="5" class="w-full"></textarea>
                     {{-- Revisa por alhun error de validacion --}}
-                    <x-input-error for="imageEdit.description" />
+                    <x-input-error for="sectionxEdit.description" />
+
                 </div>
+
+                <div class="col-span-1">
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-2">
+                <div class="col-span-2">
+                    <x-label value="Description 1" />
+                    <textarea wire:model.defer="sectionxEdit.description1" type="text" cols="20" rows="5" class="w-full"></textarea>
+                    {{-- Revisa por alhun error de validacion --}}
+                    <x-input-error for="sectionxEdit.description1" />
+                </div>
+
                 <div class="col-span-1">
 
                 </div>
-
             </div>
+
+
 
         </x-slot>
 
