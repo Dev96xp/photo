@@ -218,13 +218,13 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
                     <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
-                        {{ $name_largeImageA }}</h1>
+                        {{ $largeImageA_name }}</h1>
                     {{-- <h1 class="text-white text-bold text-4xl">
                     Means
-                </h1>
+                </h1>  --}}
                 <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                    Easy Access to Decorating Experts Ensuring Quality Outputs from Concept to Completion
-                </p> --}}
+                    {{ $largeImageA_desc }}
+                </p>
 
                 </div>
             </div>
@@ -280,12 +280,12 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
                     <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
-                        {{ $name_largeImageB }}</h1>
+                        {{ $largeImageB_name }}</h1>
                     <h1 class="text-white text-bold text-4xl">
-                        {{ $note_largeImageB }}
+                        {{ $largeImageB_note }}
                     </h1>
                     <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                        {{ $desc_largeImageB }}
+                        {{ $largeImageB_desc }}
                     </p>
 
                 </div>
