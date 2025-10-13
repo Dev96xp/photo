@@ -121,7 +121,7 @@
                     {{-- <img class="rounded-xl lg:h-40 w-full object-cover opacity-75"     ORIGINAL - ANTES
                         src="{{ asset('img/home/DSC_3035.jpg') }}" alt=""> --}}
 
-                    <a href="gallery"><img class="rounded-sm lg:h-80 w-full object-cover opacity-75"
+                    <a href="gallery"><img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
                             src="{{ Storage::url($article1) }}" alt="article1"></a>
 
                     <header class="mt-2">
@@ -140,7 +140,7 @@
             {{-- ARTICULO 2 --}}
             <article>
                 <figure>
-                    <img class="rounded-sm lg:h-80 w-full object-cover opacity-75" src="{{ Storage::url($article2) }}"
+                    <img class="rounded-sm lg:h-80 w-full object-cover opacity-100" src="{{ Storage::url($article2) }}"
                         alt="article2">
                     <header class="mt-2">
                         <a href="#">
@@ -158,7 +158,7 @@
             <article>
                 <figure>
                     <a href="gallery">
-                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-75"
+                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
                             src="{{ Storage::url($article3) }}" alt="article3">
                     </a>
                     <header class="mt-2">
@@ -177,7 +177,7 @@
                 <figure>
                     {{-- <img class="rounded-xl lg:h-40 w-full object-cover opacity-75"
                         src="{{ asset('img/home/DSC_3035.jpg') }}" alt=""> --}}
-                    <img class="rounded-sm lg:h-80 w-full object-cover opacity-75" src="{{ Storage::url($article4) }}"
+                    <img class="rounded-sm lg:h-80 w-full object-cover opacity-100" src="{{ Storage::url($article4) }}"
                         alt="article4">
 
                     <header class="mt-2">
