@@ -210,23 +210,23 @@
 
 
     {{-- SECCTION 5 - LargeImage A --}}
-    <div class="w-full h-screen/2 lg:h-screen mx-auto px-4 sm:px-6 lg:px-64" style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
+    <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
 
         <section class="mt-16 opacity-100 relative bg-fixed lg:bg-cover bg-center bg-no-repeat hover:opacity-100"
             style="background-image: url('{{ Storage::url($largeImageA) }}')">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
+
+            <div class="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
                     <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
                         {{ $largeImageA_name }}</h1>
-                    {{-- <h1 class="text-white text-bold text-4xl">
-                    Means
-                </h1>  --}}
-                <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                    {{ $largeImageA_desc }}
-                </p>
+
+                    <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
+                        {{ $largeImageA_desc }}
+                    </p>
 
                 </div>
             </div>
+
         </section>
     </div>
 
