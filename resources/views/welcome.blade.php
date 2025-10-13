@@ -279,12 +279,12 @@
             style="background-image: url('{{ Storage::url($largeImageB) }}')">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
-                    <h1 class="text-white text-bold text-6xl py-6 justify-center font-Playfair Display SC">
+                    <h1 class="text-gray-300 text-bold text-6xl py-6 justify-center font-Playfair Display SC">
                         {{ $largeImageB_name }}</h1>
-                    <h1 class="text-white text-bold text-4xl">
+                    <h1 class="text-gray-400 text-bold text-4xl">
                         {{ $largeImageB_note }}
                     </h1>
-                    <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
+                    <p class="text-gray-200 font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
                         {{ $largeImageB_desc }}
                     </p>
 

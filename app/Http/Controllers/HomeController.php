@@ -34,13 +34,13 @@ class HomeController extends Controller
         $logo2 = '';
         $logo3 = '';
 
-        $largeImageA_name = '';
         $largeImageA = '';
+        $largeImageA_name = '';
         $largeImageA_note = '';
         $largeImageA_desc = '';
 
-        $largeImageB_name = '';
         $largeImageB = '';
+        $largeImageB_name = '';
         $largeImageB_note = '';
         $largeImageB_desc = '';
 
@@ -170,16 +170,16 @@ class HomeController extends Controller
                         $locationImage = $image->url;
                         break;
                     case 'largeImageA':
-                        $largeImageA_name = $image->name;
                         $largeImageA = $image->url;
+                        $largeImageA_name = $image->name;
                         $largeImageA_note = $image->note;
                         $largeImageA_desc = $image->description;
                         break;
                     case 'largeImageB':
-                        $name_largeImageB = $image->name;
                         $largeImageB = $image->url;
-                        $note_largeImageB = $image->note;
-                        $desc_largeImageB = $image->description;
+                        $largeImageB_name = $image->name;
+                        $largeImageB_note = $image->note;
+                        $largeImageB_desc = $image->description;
                         break;
                     case 'special1':
                         $name_special1 = $image->name;
@@ -215,12 +215,12 @@ class HomeController extends Controller
             'logo2',
             'logo3',
             'mainImage',
-            'largeImageA_name',
             'largeImageA',
+            'largeImageA_name',
             'largeImageA_note',
             'largeImageA_desc',
-            'largeImageB_name',
             'largeImageB',
+            'largeImageB_name',
             'largeImageB_note',
             'largeImageB_desc',
             'locationImage',
