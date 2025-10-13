@@ -112,7 +112,7 @@
         </h1>
 
         <div {{-- max-w-7xl --}}
-            class="w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-4">
+            class="w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
             {{-- ARTICULO 1 --}}
             <article>
                 <figure>
