@@ -26,20 +26,21 @@ class PhotographyController extends Controller
         $logo2 = '';
         $logo3 = '';
 
-        $art1p = '';
-        $art2p = '';
-        $art3p = '';
-        $art4p = '';
 
-        $art1p_desc = '';
-        $art2p_desc = '';
-        $art3p_desc = '';
-        $art4p_desc = '';
+        $artp1 = '';
+        $artp2 = '';
+        $artp3 = '';
+        $artp4 = '';
 
-        $art1p_name = '';
-        $art2p_name = '';
-        $art3p_name = '';
-        $art4p_name = '';
+        $artp1_desc = '';
+        $artp2_desc = '';
+        $artp3_desc = '';
+        $artp4_desc = '';
+
+        $artp1_name = '';
+        $artp2_name = '';
+        $artp3_name = '';
+        $artp4_name = '';
 
         $blog1p = '';
         $blog2p = '';
@@ -126,28 +127,28 @@ class PhotographyController extends Controller
                     case 'logo3':
                         $logo3 = $image->url;
                         break;
-                    case 'art1p':
-                        $art1p = $image->url;
-                        $art1p_desc = $image->description;
-                        $art1p_name = $image->name;
+                    case 'artp1':
+                        $artp1 = $image->url;
+                        $artp1_desc = $image->description;
+                        $artp1_name = $image->name;
                         break;
-                    case 'art2p':
-                        $art2p = $image->url;
-                        $art2p_desc = $image->description;
-                        $art2p_name = $image->name;
+                    case 'artp2':
+                        $artp2 = $image->url;
+                        $artp2_desc = $image->description;
+                        $artp2_name = $image->name;
                         break;
-                    case 'art3p':
-                        $art3p = $image->url;
-                        $art3p_desc = $image->description;
-                        $art3p_name = $image->name;
+                    case 'artp3':
+                        $artp3 = $image->url;
+                        $artp3_desc = $image->description;
+                        $artp3_name = $image->name;
                         break;
-                    case 'art4p':
-                        $art4p = $image->url;
-                        $art4p_desc = $image->description;
-                        $art4p_name = $image->name;
+                    case 'artp4':
+                        $artp4 = $image->url;
+                        $artp4_desc = $image->description;
+                        $artp4_name = $image->name;
                         break;
                     case 'blog1p':
-                        $blog1p = $image->url;
+                        $blog1p = $image->up4;
                         $blog1p_name = $image->name;
                         $blog1p_desc = $image->description;
                         break;
@@ -191,18 +192,18 @@ class PhotographyController extends Controller
             'business',
             'galleryOfCarouselPrincipal',
             'sectionxes',
-            'art1p',
-            'art2p',
-            'art3p',
-            'art4p',
-            'art1p_desc',
-            'art2p_desc',
-            'art3p_desc',
-            'art4p_desc',
-            'art1p_name',
-            'art2p_name',
-            'art3p_name',
-            'art4p_name',
+            'artp1',
+            'artp1_name',
+            'artp1_desc',
+            'artp2',
+            'artp2_name',
+            'artp2_desc',
+            'artp3',
+            'artp3_name',
+            'artp3_desc',
+            'artp4',
+            'artp4_name',
+            'artp4_desc',
             'blog1p',
             'blog2p',
             'blog3p',

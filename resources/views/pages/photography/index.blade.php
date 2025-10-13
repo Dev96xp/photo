@@ -73,42 +73,89 @@
             </div>
         </section>
 
-        {{-- Section 2 - Articles --}}
-        <section style="{{ $active2 == 'ACTIVE' ? '' : 'display:none' }}">
-            <div class="container marketing">
-                <!-- Marketing messaging and featurettes
-                 ================================================== -->
-                <!-- Wrap the rest of the page in another container to center all the content. -->
-                <!-- Three columns of text below the carousel -->
-                <div class="row">
-                    <div class="col-lg-4">
 
-                        <img class="mx-auto mb-3" src="{{ Storage::url($art1p) }}" alt="art1p" width="400"
-                            height="200">
-                        <h2 class="text-xl font-bold">{{ $art1p_name }}</h2>
-                        <p>{{ $art1p_desc }}</p>
+        {{-- SECCTION 2 - Articles - Contenido con 4 articulos --}}
+        <section class="mt-6" style="{{ $active2 == 'ACTIVE' ? '' : 'display:none' }}">
+            {{-- <h1 class="text-gray-800 text-center text-4xl mb-6 font-bold"
+                style="my-6 font-family: proxima-nova, sans-serif;font-weight: 800;font-style: normal">
+                ---- nada todavia----
+            </h1> --}}
 
-                        {{-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> --}}
-                    </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <img class="mx-auto mb-3" src="{{ Storage::url($art2p) }}" alt="art2p" width="400"
-                            height="200">
-                        <h2 class="text-xl font-bold">{{ $art2p_name }}</h2>
-                        <p>{{ $art2p_desc }}</p>
+            <div {{-- max-w-7xl --}}
+                class="w-full mx-auto px-3 sm:px-4 lg:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
+                {{-- ARTICULO 1 --}}
+                <article>
+                    <figure>
 
-                        {{-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> --}}
-                    </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
-                        <img class="mx-auto mb-3" src="{{ Storage::url($art3p) }}" alt="art3p" width="400"
-                            height="200">
-                        <h2 class="text-xl font-bold">{{ $art3p_name }}</h2>
-                        <p>{{ $art3p_desc }}</p>
+                        <a href="gallery"><img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
+                                src="{{ Storage::url($artp1) }}" alt="article1"></a>
+
+                        <header class="mt-2">
+                            <a href="gallery">
+                                <h1 class="text-center text-xl text-gray-700">{{ $artp1_name }}</h1>
+                            </a>
+                        </header>
+
+                        <a href="gallery" class="mt-2">
+                            <p>{{ $artp1_desc }}</p>
+                        </a>
+
+                    </figure>
+                </article>
+
+                {{-- ARTICULO 2 --}}
+                <article>
+                    <figure>
+                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
+                            src="{{ Storage::url($artp2) }}" alt="article2">
+                        <header class="mt-2">
+                            <a href="#">
+                                <h1 class="text-center text-xl text-gray-700">{{ $artp2_name }}</h1>
+                            </a>
+                        </header>
+                        <a href="#" class="mt-2">
+                            <p>{{ $artp2_desc }}</p>
+                        </a>
+
+                    </figure>
+                </article>
+
+                {{-- ARTICULO 3 --}}
+                <article>
+                    <figure>
+                        <a href="gallery">
+                            <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
+                                src="{{ Storage::url($artp3) }}" alt="article3">
+                        </a>
+                        <header class="mt-2">
+                            <a href="gallery">
+                                <h1 class="text-center text-xl text-gray-700">{{ $artp3_name }}</h1>
+                            </a>
+                        </header>
+                        <a href="gallery" class="mt-2">
+                            <p>{{ $artp3_desc }}</p>
+                        </a>
+                    </figure>
+                </article>
+
+                {{-- ARTICULO 4 --}}
+                <article>
+                    <figure>
+                        {{-- <img class="rounded-xl lg:h-40 w-full object-cover opacity-75"
+                        src="{{ asset('img/home/DSC_3035.jpg') }}" alt=""> --}}
+                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
+                            src="{{ Storage::url($artp4) }}" alt="article4">
+
+                        <header class="mt-2">
+                            <h1 class="text-center text-xl text-gray-700">{{ $artp4_name }}</h1>
+                        </header>
+                        <p>{{ $artp4_desc }}</p>
+
                         <p>{{ $business->name }}</p>
                         <p>{{ $business->phone }}</p>
                         <p>{{ $business->email }}</p>
-                        {{-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> --}}
-                    </div><!-- /.col-lg-4 -->
-                </div><!-- /.row -->
+                    </figure>
+                </article>
             </div>
         </section>
 
@@ -135,9 +182,10 @@
 
                 <div class="row featurette">
                     <div class="col-md-7">
-                        <h2 class="featurette-heading text-2xl mb-2"><span class="text-muted">{{ $blog1p_name }}</span>
+                        <h2 class="featurette-heading text-2xl mb-2"><span
+                                class="text-muted">{{ $blog1p_name }}</span>
                         </h2>
-                        <p class="lead">{{ $blog1p_desc}}</p>
+                        <p class="lead">{{ $blog1p_desc }}</p>
                     </div>
                     <div class="col-md-5">
                         <img class="featurette-image img-fluid mx-auto" src="{{ Storage::url($blog1p) }}"
@@ -149,8 +197,9 @@
 
                 <div class="row featurette">
                     <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading text-2xl mb-2"><span class="text-muted"> {{ $blog2p_name }}</span></h2>
-                        <p class="lead">{{ $blog2p_desc}}</p>
+                        <h2 class="featurette-heading text-2xl mb-2"><span class="text-muted">
+                                {{ $blog2p_name }}</span></h2>
+                        <p class="lead">{{ $blog2p_desc }}</p>
                     </div>
                     <div class="col-md-5 order-md-1">
                         <img class="featurette-image img-fluid mx-auto" src="{{ Storage::url($blog2p) }}"
@@ -162,9 +211,10 @@
 
                 <div class="row featurette">
                     <div class="col-md-7">
-                        <h2 class="featurette-heading text-2xl mb-2"><span class="text-muted">{{ $blog3p_name }}</span>
+                        <h2 class="featurette-heading text-2xl mb-2"><span
+                                class="text-muted">{{ $blog3p_name }}</span>
                         </h2>
-                        <p class="lead">{{ $blog3p_desc}}</p>
+                        <p class="lead">{{ $blog3p_desc }}</p>
                     </div>
                     <div class="col-md-5">
                         <img class="featurette-image img-fluid mx-auto" src="{{ Storage::url($blog3p) }}"
