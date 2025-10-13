@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Page;
 
 use App\Models\Sectionx;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class EditSection extends Component
 
@@ -57,11 +58,6 @@ class EditSection extends Component
         return view('livewire.admin.page.edit-section');
     }
 
-    // MASTER CLASS - Actualiza la fecha
-    // a) Llamamos a la propiedad: sectionx
-    // b) Le pasamos el metodo: save
-    // c) Esto va ser que cualquier cambio que hallamos hecho
-    // en la propiedad : sectionx, se actualice en la base de datos
 
     public function save(){
 

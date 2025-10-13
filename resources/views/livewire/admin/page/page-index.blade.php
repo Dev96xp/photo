@@ -33,7 +33,7 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
                         @foreach ($pages as $page)
-                            <tr>
+                            <tr wire:key="pagina-{{ $page->id }}">
                                 <td class="whitespace-nowrap py-1 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center" wire:click="select_page({{ $page }})">
                                         <div class="h-11 w-11 flex-shrink-0">

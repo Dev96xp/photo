@@ -29,8 +29,6 @@ class PageSections extends Component
     {
         $this->page = $page;
         $this->page_id = $page->id;
-
-        //dd($this->page);
     }
 
     public function delete_section(Sectionx $sectionx)

@@ -1,8 +1,9 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-gray-700">Sections for <span
-                    class="text-blue">{{ $page->name }}</span></h1>
+            <h1 class="text-base font-semibold leading-6 text-gray-700">Sections for
+                <span class="text-blue">{{ $page->name }}</span>
+            </h1>
         </div>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             {{-- Button --}}
@@ -19,7 +20,6 @@
                             <th scope="col"
                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
 
-                            </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status
                             </th>
 
@@ -30,7 +30,8 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
                         @foreach ($sectionxes as $sectionx)
-                            <tr>
+                            <tr wire:key="secciones-{{ $sectionx->id }}"> {{-- SUPER IMPORTANTE --}}
+
                                 <td class="whitespace-nowrap py-1 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <div class="h-11 w-11 flex-shrink-0">
@@ -41,10 +42,13 @@
                                         <div class="ml-4">
                                             <div class="font-bold text-gray-900">{{ $sectionx->name }}</div>
                                             <div class="text-gray-500">{{ $sectionx->description }}</div>
-
                                         </div>
                                     </div>
                                 </td>
+
+                                {{-- <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
+                                    @livewire('admin.page.edit-section', ['sectionx' => $sectionx], key($sectionx->id))
+                                </td> --}}
 
                                 <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
 
@@ -87,16 +91,9 @@
                                     Edit
                                 </td> --}}
 
-                                {{-- <td class="whitespace-nowrap px-3 py-1 text-sm text-gray-500">
-                                    @livewire('admin.page.edit-section', ['sectionx' => $sectionx], key($sectionx->id))
-                                </td> --}}
 
                             </tr>
                         @endforeach
-
-
-                        <!-- More people... -->
-
 
                     </tbody>
                 </table>
