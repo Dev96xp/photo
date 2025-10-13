@@ -36,8 +36,6 @@
                         <p class="text-black font-bold text-md mt-2 lg:mb-4" style="font-family: Montserrat">
                             {{ $business->description }}
                         </p>
-
-
                         <p class="text-white font-bold" style="font-family: Montserrat"></p>
                     </div>
 
@@ -214,7 +212,7 @@
     {{-- SECCTION 5 - LargeImage A --}}
     <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
 
-        <section class="w-auto mt-16 opacity-100 relative bg-fixed lg:bg-cover bg-center bg-no-repeat hover:opacity-100"
+        <section class="w-full h-screen/2 mt-16 opacity-100 relative bg-fixed lg:bg-cover bg-center bg-no-repeat hover:opacity-100"
             style="background-image: url('{{ Storage::url($largeImageA) }}')">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
