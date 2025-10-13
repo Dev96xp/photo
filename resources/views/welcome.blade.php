@@ -112,12 +112,10 @@
         </h1>
 
         <div {{-- max-w-7xl --}}
-            class="w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+            class="w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-4">
             {{-- ARTICULO 1 --}}
             <article>
                 <figure>
-                    {{-- <img class="rounded-xl lg:h-40 w-full object-cover opacity-75"     ORIGINAL - ANTES
-                        src="{{ asset('img/home/DSC_3035.jpg') }}" alt=""> --}}
 
                     <a href="gallery"><img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
                             src="{{ Storage::url($article1) }}" alt="article1"></a>
