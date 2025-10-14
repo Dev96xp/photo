@@ -215,7 +215,7 @@
 
             <div class="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
-                    <h1 class="text-white text-bold text-6xl justify-center font-Playfair Display SC">
+                    <h1 class="text-white text-bold text-4xl lg:text-6xl justify-center font-Playfair Display SC">
                         {{ $largeImageA_name }}</h1>
 
                     <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
