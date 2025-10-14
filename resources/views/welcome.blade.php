@@ -27,7 +27,7 @@
 
                     <div class="absolute left-10 lg:left-20 bottom-2 lg:bottom-20">
 
-                        <p class="text-gray-200 font-bold text-4xl md:text-8xl lg:text-8xl py-2"
+                        <p class="text-gray-200 font-bold text-4xl md:text-8xl lg:text-8xl"
                             style="font-family: Montserrat">
                             {{ $business->name }}</p>
                         <p class="text-white text-lg md:text-5xl lg:text-5xl font-bold" style="font-family: Montserrat">
