@@ -272,7 +272,7 @@
 
     {{-- SECCTION 8 - LargeImage B --}}
     <div style="{{ $active8 == 'ACTIVE' ? '' : 'display:none' }}">
-        <section class="mt-16 py-28 opacity-100 relative bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
+        <section class="mt-16 py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
             style="background-image: url('{{ Storage::url($largeImageB) }}')">
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
