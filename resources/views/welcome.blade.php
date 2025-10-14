@@ -210,12 +210,12 @@
     {{-- SECCTION 5 - LargeImage A --}}
     <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
 
-        <section class="mt-16 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
+        <section class="mt-16 py-8 lg:py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
             style="background-image: url('{{ Storage::url($largeImageA) }}')">
 
             <div class="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
                 <div class="w-full md:w-3/4 lg:w-1/2">
-                    <h1 class="py-28 text-white text-bold text-6xl justify-center font-Playfair Display SC">
+                    <h1 class="text-white text-bold text-6xl justify-center font-Playfair Display SC">
                         {{ $largeImageA_name }}</h1>
 
                     <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
@@ -272,7 +272,7 @@
 
     {{-- SECCTION 8 - LargeImage B --}}
     <div style="{{ $active8 == 'ACTIVE' ? '' : 'display:none' }}">
-        <section class="mt-16 py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
+        <section class="mt-16 py-8 lg:py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
             style="background-image: url('{{ Storage::url($largeImageB) }}')">
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
