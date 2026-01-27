@@ -61,7 +61,8 @@
                                     @switch($page->status)
                                         @case('ACTIVE')
                                             <span>
-                                                <buttons class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
+                                                <buttons
+                                                    class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
                                                     wire:click="update_status({{ $page->id }})">
                                                     {{ $page->status }}</buttons>
                                             </span>
@@ -69,7 +70,8 @@
 
                                         @case('INACTIVE')
                                             <span>
-                                                <buttons class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"
+                                                <buttons
+                                                    class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"
                                                     wire:click="update_status({{ $page->id }})">
                                                     {{ $page->status }}</buttons>
                                             </span>
@@ -77,7 +79,8 @@
 
                                         @case('HIDE')
                                             <span>
-                                                <buttons class="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
+                                                <buttons
+                                                    class="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
                                                     wire:click="update_status({{ $page->id }})">
                                                     {{ $page->status }}</buttons>
                                             </span>
@@ -111,4 +114,7 @@
             </div>
         </div>
     </div>
+
+
+
 </div>

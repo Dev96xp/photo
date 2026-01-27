@@ -18,10 +18,12 @@ use App\Http\Controllers\Admin\Training\TrainingController;
 use App\Http\Controllers\Admin\Book\BookController;
 use App\Http\Controllers\Admin\Business\BusinessController;
 use App\Http\Controllers\Admin\Event\EventCalendarController;
+use App\Http\Controllers\Admin\Expense\ExpenseController;
 use App\Http\Controllers\Admin\Impost\ImpostController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Page\PageController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
+use App\Http\Controllers\Admin\Project\ProjectController;
 use App\Http\Controllers\Admin\Proof\ProofController;
 use App\Models\Business;
 use App\Models\Impost;
@@ -100,5 +102,12 @@ Route::post('products/{product}/save_images/', [ProductController::class,'save_i
 
 // Corte de Caja
 Route::get('corte/index', [BookController::class,'index'])->name('corte.index');
+
+Route::get('expense/index', [ExpenseController::class,'index'])->name('expense.index');
+Route::get('expense/{expense}/upload_images', [ExpenseController::class,'upload_images'])->name('expense.upload_images'); //Dropzone
+Route::post('expense/{expense}/save_images/', [ExpenseController::class,'save_images'])->name('expense.save_images');
+
+Route::get('project/index', [ProjectController::class,'index'])->name('project.index');
+
 Route::get('corte/prnreport/{store_id}/{date1?}/{date2?}/{radio_select?}', [BookController::class,'prnreport'])->name('corte.prnreport');
 

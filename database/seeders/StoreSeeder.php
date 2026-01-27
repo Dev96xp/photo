@@ -13,14 +13,26 @@ class StoreSeeder extends Seeder
      */
     public function run(): void
     {
+
         Store::create([
-            'name' => 'Oakview',
-            'code' => 'oakview',
+            'name' => 'Omaha',
+            'code' => 'omaha',
             'address' => '3001 S 144th St, Omaha, NE 68144',
             'city' => 'Omaha',
             'state' =>  'NE',
             'phone' => '402-884-9950',
             'zip' => '68144',
+            'code_ip' => '127.1.1.1',
+        ]);
+
+        Store::create([
+            'name' => 'Online',
+            'code' => 'web',
+            'address' => '315 West 3rd st, Grand Island, NE 68801',
+            'city' => 'Conocido',
+            'state' =>  'NE',
+            'phone' => '402-884-9950',
+            'zip' => '68110',
             'code_ip' => '127.1.1.1',
         ]);
 
@@ -65,17 +77,6 @@ class StoreSeeder extends Seeder
             'address' => 'Conocido, Coral Gables, Florida 68801',
             'city' => 'Coral Gables',
             'state' =>  'FL',
-            'phone' => '402-884-9950',
-            'zip' => '68144',
-            'code_ip' => '127.1.1.1',
-        ]);
-
-        Store::create([
-            'name' => 'Online',
-            'code' => 'web',
-            'address' => '315 West 3rd st, Grand Island, NE 68801',
-            'city' => 'Conocido',
-            'state' =>  'NE',
             'phone' => '402-884-9950',
             'zip' => '68144',
             'code_ip' => '127.1.1.1',

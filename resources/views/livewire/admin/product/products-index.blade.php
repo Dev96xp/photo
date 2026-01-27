@@ -82,11 +82,6 @@
         </div>
     </div>
 
-
-
-
-
-
     <div>
         <input type="hidden" id="lbCase" name="tcase" wire:model="lbCase">
         <input type="hidden" id="lbSku" name="sku" wire:model="lbSku">

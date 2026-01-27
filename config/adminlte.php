@@ -485,10 +485,47 @@ return [
             'submenu'     => [
 
                 [
-                    'text'        => 'In/Out',
+                    'text'        => 'Ingresos',
                     'route'       => 'admin.corte.index',  // La ruta ala que apunta
                     'icon'        => 'fa-solid fa-box-archive',
                     'icon_color'  => 'blue',
+                ],
+                [
+                    'text'        => 'Expenses',
+                    'route'       => 'admin.expense.index',  // La ruta ala que apunta
+                    'icon'        => 'fa-solid fa-box-archive',
+                    'icon_color'  => 'blue',
+                ],
+
+            ]
+        ],
+
+        [
+            'text'        => 'PROYECTOS',
+            'icon'        => 'fas fa-credit-card',
+            'icon_color'  => 'red',
+            'can'         => 'Dashborad cashier',   // SEGURIDAD - PERMISO
+            'label'       => 1,
+            'label_color' => 'success',
+            'submenu'     => [
+
+                [
+                    'text'        => 'Proyects',
+                    'icon'      => 'far fa-images',
+                    'route'       => 'admin.project.index',  // La ruta ala que apunta
+                    'icon_color'  => '',
+                ],
+                [
+                    'text'        => 'Proyects',
+                    'icon'      => 'far fa-images',
+                    'route'       => '',  // La ruta ala que apunta
+                    'icon_color'  => '',
+                ],
+                [
+                    'text'        => 'Proyects',
+                    'icon'      => 'far fa-images',
+                    'route'       => '',  // La ruta ala que apunta
+                    'icon_color'  => '',
                 ],
 
             ]

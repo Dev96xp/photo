@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Http;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -21,11 +22,28 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
+        // dd($input);
+        // ReCAPTCHA    Parte[3/3]
+        // $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        //         'secret' => '6Ldd3EgsAAAAALWi3LdNSYqtD9fxHyeOZiWyzAJe',
+        //         'response' => $input['g-recaptcha-response'],
+        //     ])->object();
+
+        // if ($response->success && $response->score >= 0.7) {
+        //     dd('El Usuario es Humano');
+        // } else {
+        //     dd('El Usuario es un Robot');
+        // }
+
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            // Agregando esta regla de validacion de recaptcha, a cada formulario este sera protegido por Google recaptcha
+            'g-recaptcha-response' => ['required', new \App\Rules\Recaptcha()],    //ReCAPTCHA    Parte[4/4]
         ])->validate();
 
         // B) Obtiene el nuevo ID de la tabla: ids, para el NUEVO usuario en la tabla: USERS (CLIENTE)
@@ -42,7 +60,7 @@ class CreateNewUser implements CreatesNewUsers
             'state' => $input['state'],
             'zip' => $input['zip'],
             'phone' => $input['phone'],
-            'store_id' => 1,
+            'store_id' => 2,   // Por defecto se asigna la tienda Online
             'password' => Hash::make($input['password']),
         ]);
 

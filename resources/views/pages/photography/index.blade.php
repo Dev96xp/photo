@@ -29,7 +29,7 @@
                 <div class="carousel-inner">
 
                     @if ($galleryOfCarouselPrincipal)
-                        {{-- @foreach ($sectionxes as $section) --}}
+
                         @foreach ($galleryOfCarouselPrincipal as $image)
                             <div
                                 class="carousel-item @if ($loop->first) active @endif max-h-80 lg:max-h-none w-full">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- @endforeach  --}}
+
                     @endif
 
                 </div>

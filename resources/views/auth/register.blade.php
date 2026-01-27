@@ -15,8 +15,8 @@
                 </x-label>
                 {{-- IMPORTANTE: Por default el ancho es la mitad --}}
                 <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                    required autofocus autocomplete="name" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                    autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
@@ -28,43 +28,46 @@
             <div class="mt-4 flex gap-2">
                 <div>
                     <x-label for="city" value="{{ __('City') }}" />
-                    <x-input id="city" class="block mt-1" type="text" name="city"
-                        :value="old('city')" required />
+                    <x-input id="city" class="block mt-1" type="text" name="city" :value="old('city')"
+                        required />
                 </div>
 
                 <div>
                     <x-label for="state" value="{{ __('State') }}" />
-                    <x-input id="state" class="block mt-1 w-full" type="text" name="state"
-                        :value="old('state')" required />
+                    <x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')"
+                        required />
                 </div>
 
                 <div>
                     <x-label for="zip" value="{{ __('Zip') }}" />
-                    <x-input id="zip" class="block mt-1 w-full" type="text" name="zip"
-                        :value="old('zip')" required />
+                    <x-input id="zip" class="block mt-1 w-full" type="text" name="zip" :value="old('zip')"
+                        required />
                 </div>
 
             </div>
 
             <div class="mt-4">
                 <x-label for="phone" value="{{ __('Phone') }}" />
-                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" onkeydown="phoneNumberFormatter()" id="phone-number" :value="old('phone')"
-                    required />
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone"
+                    onkeydown="phoneNumberFormatter()" id="phone-number" :value="old('phone')" required />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -75,8 +78,18 @@
 
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                                    'terms_of_service' =>
+                                        '<a target="_blank" href="' .
+                                        route('terms.show') .
+                                        '" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
+                                        __('Terms of Service') .
+                                        '</a>',
+                                    'privacy_policy' =>
+                                        '<a target="_blank" href="' .
+                                        route('policy.show') .
+                                        '" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
+                                        __('Privacy Policy') .
+                                        '</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -85,13 +98,15 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
                 <x-button class="ms-4">
                     {{ __('Register') }}
                 </x-button>
+
             </div>
         </form>
     </x-authentication-card>

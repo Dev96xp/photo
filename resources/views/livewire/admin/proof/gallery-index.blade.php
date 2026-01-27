@@ -60,7 +60,7 @@
                                     </td>
 
                                     {{-- @can('Delete proofing gallery') --}}
-                                    {{-- Borra galleria usando SweetAlert2 --}}
+                                    {{-- Borra galleria usando SweetAlert2 - Pasos hasta abajo--}}
                                     <td wire:click="$dispatch('delete-images', { gallery: {{ $gallery }} })"
                                         class="relative text-red-600 hover:text-red-900 whitespace-nowrap py-1 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                         Delete

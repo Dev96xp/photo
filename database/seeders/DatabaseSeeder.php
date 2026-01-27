@@ -57,6 +57,10 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('public/galleries');
         Storage::makeDirectory('public/galleries');
 
+        // Fotos de los recibos de los gastos
+        Storage::deleteDirectory('public/expenses');
+        Storage::makeDirectory('public/expenses');
+
         $this->call(BusinessSeeder::class);
 
         $this->call(StoreSeeder::class);
@@ -130,6 +134,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TagSeeder::class);
         $this->call(PostSeeder::class);
+
+        $this->call(VendorSeeder::class);
+        $this->call(ProjectSeeder::class);
+        $this->call(ExpenseSeeder::class);
 
 
     }

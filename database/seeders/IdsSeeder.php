@@ -54,5 +54,10 @@ class IdsSeeder extends Seeder
             'tables' => 'Events',
             'nextid' => 1004
         ]);
+
+        Ids::create([
+            'tables' => 'Projects',
+            'nextid' => 1004
+        ]);
     }
 }

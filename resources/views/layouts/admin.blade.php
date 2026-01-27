@@ -36,6 +36,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
 
+    {{-- Color Picker - Classic theme --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -100,7 +102,8 @@
         flatpickr('#datep')
     </script>
 
-
+    <!-- Color Picker - Modern or es5 bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
     {{-- MASTER CLASS - @stack('script') - Sirve para recibir un script que viene desde un
     componente de Livewire enviado por un - @push('script') y lo inserta en esta plantilla
@@ -108,7 +111,11 @@
     En este caso tenemos uno que viene desde:( livewire.admin.user.create-user.blade.php)
     que contiene lo de crear un user. --}}
     @stack('script')
+
+    @stack('script_color') {{-- Para el color picker --}}
+
     @stack('js') {{-- Supuestamente se esta usando para SweetAlert2 --}}
+
 
 </body>
 
