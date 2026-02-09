@@ -19,6 +19,7 @@
                                     {{-- <img class="w-24 h-40 mr-2 object-cover rounded-md"
                                         src="{{ Storage::url($image->url) }}" alt=""> --}}
 
+                                    {{-- Modal para mostrar la imagen de lo recibos --}}
                                     @livewire('admin.expense.display-image', ['image' => $image], key($image->id))
 
                                     <x-danger-button class="px-0 mx-0 absolute right-2 top-2 w-4"
