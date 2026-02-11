@@ -76,7 +76,7 @@ class ExpenseController extends Controller
                 para luego guardala en la ruta contenida*/
 
         Image::read($request->file('file'))     //Lee el archivo
-            ->scale(height: 1200)               //Cambia su altura a 1200px y conserva proporcion
+            ->scale(height: 600)               //Cambia su altura a 1200px y conserva proporcion
             ->save($ruta);                      //Guarda la imagen en la ruta establecida, en tus carpestas
 
         // Guardo esta url en la tabla (file) YA NO SE VA A USAR
