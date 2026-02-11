@@ -76,7 +76,7 @@ Parte [1/7] - Copiar links de css en (https://cdnjs.com/libraries/dropzone) y po
             dictDefaultMessage: "Arrastre una imagen al recuadro", // 2. Mensaje por default
             acceptedFiles: 'image/*', // 3. Solo acepta imagenes
             paramName: 'file', // The name that will be used to transfer the file
-            //maxFilesize: 1, // Maximo tamaño de la imagen en MEGAS
+            maxFilesize: 10, // Maximo tamaño de la imagen en MEGAS
             //maxFiles: 6, //Maximo de imagenes a procesar al mismo tiempo
 
             complete: function(file) { // Cuando termina de subir una imagen desaparece
