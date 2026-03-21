@@ -29,7 +29,7 @@
 
                         <p class="text-gray-200 font-bold text-4xl md:text-8xl lg:text-8xl"
                             style="font-family: Montserrat">
-                            {{ $business->name }}</p>
+                            {{ $business->name }}{{ $business->name }}</p>
                         <p class="text-white text-lg md:text-5xl lg:text-5xl font-bold" style="font-family: Montserrat">
                             {{ $business->slogan }}
                         </p>
