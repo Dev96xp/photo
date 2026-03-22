@@ -6,504 +6,986 @@
     {{-- MODELO: app/Models/Sectionx.php --}}
     {{-- SEEDER: database/seeders/SectionxSeeder.php --}}
 
-    {{-- SECCTION 1 - Principal Image of the website --}}
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Variables globales ── */
+        :root {
+            --color-dark:   #0D0D0D;
+            --color-cream:  #F5F0EB;
+            --color-gold:   #C9A96E;
+            --color-white:  #FFFFFF;
+            --color-gray:   #6B6B6B;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-serif:   'Cormorant Garant', Georgia, serif;
+            --font-sans:    'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-white);
+            color: var(--color-dark);
+            font-family: var(--font-sans);
+        }
+
+        /* ── Animaciones de scroll ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── Línea decorativa dorada ── */
+        .gold-line::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--color-gold);
+            margin: 16px auto 0;
+        }
+
+        /* ── Etiqueta de sección ── */
+        .section-label {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--color-dark);
+            line-height: 1.2;
+        }
+
+        /* ── Botón elegante ── */
+        .btn-gold {
+            display: inline-block;
+            padding: 0.875rem 2.5rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+        .btn-gold:hover {
+            background: var(--color-gold);
+            color: var(--color-dark);
+        }
+        .btn-gold-dark {
+            display: inline-block;
+            padding: 0.875rem 2.5rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-dark);
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+        .btn-gold-dark:hover {
+            background: var(--color-gold);
+            color: var(--color-white);
+        }
+
+        /* ── Divisor decorativo ── */
+        .divider-gold {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .divider-gold::before,
+        .divider-gold::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(201,169,110,0.4);
+        }
+        .divider-gold span {
+            color: var(--color-gold);
+            font-size: 0.85rem;
+        }
+
+        /* ════════════════════════════════
+           SECTION 1 — HERO
+        ════════════════════════════════ */
+        .hero-wrap {
+            position: relative;
+            height: 100vh;
+            min-height: 620px;
+            overflow: hidden;
+        }
+        /* Ken Burns en la imagen de fondo */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: kenBurns 14s ease-in-out alternate infinite;
+        }
+        @keyframes kenBurns {
+            0%   { transform: scale(1); }
+            100% { transform: scale(1.07); }
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(0,0,0,0.08) 0%,
+                rgba(0,0,0,0.55) 60%,
+                rgba(0,0,0,0.82) 100%
+            );
+        }
+        .hero-content {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            right: 5%;
+        }
+        @media (min-width: 1024px) {
+            .hero-content { bottom: 12%; left: 8%; right: 38%; }
+        }
+        /* Animaciones escalonadas del hero */
+        @keyframes heroUp {
+            from { opacity: 0; transform: translateY(32px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .ha1 { animation: heroUp 1s ease 0.3s both; }
+        .ha2 { animation: heroUp 1s ease 0.6s both; }
+        .ha3 { animation: heroUp 1s ease 0.9s both; }
+        .ha4 { animation: heroUp 1s ease 1.2s both; }
+        .ha5 { animation: heroUp 1s ease 1.5s both; }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .scroll-hint span {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.55), transparent);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50%       { opacity: 1; }
+        }
+
+        /* ════════════════════════════════
+           SECTION 2 — VIDEO
+        ════════════════════════════════ */
+        .video-wrap {
+            position: relative;
+            overflow: hidden;
+            background: var(--color-dark);
+        }
+        .video-wrap video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.38);
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem 2rem;
+        }
+        @media (min-width: 1024px) {
+            .video-overlay { padding: 6rem 8rem; }
+        }
+
+        /* ════════════════════════════════
+           SECTION 3 — GALERÍA CARDS
+        ════════════════════════════════ */
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94),
+                        opacity 0.75s ease;
+        }
+        @media (min-width: 1024px) {
+            .gallery-card img { height: 440px; }
+        }
+        .gallery-card:hover img {
+            transform: scale(1.09);
+            opacity: 0.65;
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 55%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.75rem;
+            transition: background 0.4s ease;
+        }
+        .gallery-card:hover .gallery-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 100%);
+        }
+        .gallery-line {
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            margin-bottom: 0.6rem;
+            transition: width 0.45s ease;
+        }
+        .gallery-card:hover .gallery-line { width: 44px; }
+        .gallery-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-white);
+            margin-bottom: 0.2rem;
+        }
+        .gallery-desc {
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.72);
+            letter-spacing: 0.03em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+        }
+        .gallery-card:hover .gallery-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ════════════════════════════════
+           SECTION 4 — SERVICIOS
+        ════════════════════════════════ */
+        .service-card {
+            border: 1px solid rgba(201,169,110,0.28);
+            padding: 2.5rem 1.75rem;
+            text-align: center;
+            background: var(--color-white);
+            transition: border-color 0.35s ease,
+                        transform 0.35s ease,
+                        box-shadow 0.35s ease;
+        }
+        .service-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.07);
+        }
+        .service-icon {
+            font-size: 1.8rem;
+            color: var(--color-gold);
+            margin-bottom: 1.25rem;
+        }
+        .service-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-dark);
+            margin-bottom: 0.75rem;
+        }
+        .service-desc {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            line-height: 1.75;
+        }
+
+        /* ════════════════════════════════
+           SECTION 5 & 8 — PARALLAX
+        ════════════════════════════════ */
+        .parallax-section {
+            position: relative;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .parallax-section { background-attachment: scroll; }
+        }
+        .parallax-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.48);
+        }
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+        }
+        @media (min-width: 1024px) {
+            .parallax-content { padding: 8rem; }
+        }
+
+        /* ════════════════════════════════
+           SECTION 7 — UBICACIÓN
+        ════════════════════════════════ */
+        .location-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(15%);
+            transition: filter 0.5s ease;
+        }
+        .location-img:hover { filter: grayscale(0%); }
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-gray);
+        }
+        .contact-row i {
+            color: var(--color-gold);
+            margin-top: 3px;
+            width: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ════════════════════════════════
+           SECTION 9 — ESPECIALES
+        ════════════════════════════════ */
+        .special-card { }
+        .special-card-img-wrap { overflow: hidden; }
+        .special-card-img-wrap img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .special-card-img-wrap:hover img { transform: scale(1.06); }
+        .special-body { padding: 1.5rem 0; }
+        .special-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .special-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+        .special-desc {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            line-height: 1.7;
+        }
+        .link-gold {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            border-bottom: 1px solid var(--color-gold);
+            padding-bottom: 2px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .link-gold:hover { opacity: 0.7; }
+
+        /* ════════════════════════════════
+           SECTION 10 — FOOTER
+        ════════════════════════════════ */
+        .footer-dark {
+            background: var(--color-dark);
+            color: var(--color-white);
+        }
+        .footer-heading {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1.25rem;
+        }
+        .footer-link {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            margin-bottom: 0.65rem;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover { color: var(--color-gold); }
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 50%;
+            color: rgba(255,255,255,0.55);
+            margin-right: 0.5rem;
+            transition: border-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-social a:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 1.5rem 1.5rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.28);
+        }
+    </style>
+
+
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 1 — Hero principal con Ken Burns
+    ════════════════════════════════════════════════════════════ --}}
     <section style="{{ $active1 == 'ACTIVE' ? '' : 'display:none' }}">
+        <div class="hero-wrap">
 
-        {{-- Moño --}}
-        {{-- <img style="width:50%" class="z-10 absolute bottom-0 left-0" src="{{ asset('img/home/AdobeStock_292882187.png') }}" alt=""> --}}
+            {{-- Imagen con efecto Ken Burns --}}
+            <div class="hero-bg"
+                 style="background-image: url('{{ Storage::url($mainImage) }}')"></div>
 
-        {{-- MASTER CLASS - PARALLAX EFFECT - (bg-fixed bg-center bg-no-repeat bg-cover)
-                                         min-h-screen - OCUPA TODA LA ALTURA DE PANTALLA
-                                         opacity-75 - Detremina la opacity Inicial
-                                         hover:opacity-100 - Elimina el opacity --}}
-        <div>
-            <div class="relative">
+            {{-- Gradiente oscuro --}}
+            <div class="hero-overlay"></div>
 
-                {{-- Imagen Principal --}}
-
-                <div class="w-full h-screen/2 lg:h-screen mx-auto px-4 sm:px-6 lg:px-64 py-40 lg:py-52 opacity-100 bg-center bg-no-repeat bg-cover hover:opacity-75"
-                    style="background-image: url('{{ Storage::url($mainImage) }}')">
-
-
-                    <div class="absolute left-10 lg:left-20 bottom-2 lg:bottom-20">
-
-                        <p class="text-gray-200 font-bold text-4xl md:text-8xl lg:text-8xl"
-                            style="font-family: Montserrat">
-                            {{ $business->name }}</p>
-                        <p class="text-white text-lg md:text-5xl lg:text-5xl font-bold" style="font-family: Montserrat">
-                            {{ $business->slogan }}
-                        </p>
-                        <p class="text-black font-bold text-md mt-2 lg:mb-4" style="font-family: Montserrat">
-                            {{ $business->description }}
-                        </p>
-                        <p class="text-white font-bold" style="font-family: Montserrat"></p>
-                    </div>
-
-                </div>
-
-
-                {{-- Logo png --}}
-                {{-- top-1/2             Centra el objeto verticalmente (de la esquina superior izquierda de el mismo)
-                         left-1/2            Centra el objeto horizontalmente (de la esquina superior izquierda de el mismo)
-                         -translate-x-1/2    Mueve el objeto verticalmente la mitad de su propio ancho, para centrarlo
-                         -translate-y-1/2    Mueve el objeto horizontalmente la mitad de su propio ancho, para centrarlo
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto">
-                    <img class="h-20 lg:h-40" src="{{ Storage::url($logo1) }}"
-                            alt="logo1.png">
-                </div>
---}}
-            </div>
-        </div>
-    </section>
-
-
-    {{-- SECCTION 2 - Principal Video --}}
-    <section style="{{ $active2 == 'ACTIVE' ? '' : 'display:none' }}">
-
-        {{-- MASTER CLASS - metodo 3" autoplay loop muted plays-inline" autoplay="on" --}}
-        <div class="w-full relative">
-            <video autoplay loop muted plays-inline class="w-full">
-                <source src="/img/video/morilee.mp4" type='video/mp4'>
-            </video>
-
-            <div class="content absolute bottom-4 md:bottom-6 lg:bottom-6 left-10 lg:left-40 ">
-                <p class="text-black text-3xl sm:text-8xl lg:text-8xl pt-6 pb-2" style="font-family: Sche">
-                    {{ $business->name }}</p>
-                <p class="text-white text-xl md:text-5xl lg:text-5xl font-bold lg:mb-60"
-                    style="font-family: Montserrat">
+            {{-- Texto animado --}}
+            <div class="hero-content">
+                <p class="section-label ha1" style="color: var(--color-gold);">
+                    Fine Art Photography
+                </p>
+                <h1 class="ha2"
+                    style="font-family: var(--font-display);
+                           font-size: clamp(2.8rem, 7vw, 6.5rem);
+                           font-weight: 700;
+                           color: var(--color-white);
+                           line-height: 1.05;
+                           margin-bottom: 1rem;">
+                    {{ $business->name }}
+                </h1>
+                <p class="ha3"
+                   style="font-family: var(--font-serif);
+                          font-size: clamp(1rem, 2.5vw, 1.5rem);
+                          font-style: italic;
+                          color: rgba(255,255,255,0.82);
+                          margin-bottom: 1rem;">
                     {{ $business->slogan }}
                 </p>
-
+                <p class="ha4"
+                   style="font-size: 0.85rem;
+                          color: rgba(255,255,255,0.62);
+                          line-height: 1.75;
+                          max-width: 420px;
+                          margin-bottom: 2.5rem;">
+                    {{ $business->description }}
+                </p>
+                <a href="gallery" class="btn-gold ha5">Ver Portafolio</a>
             </div>
-        </div>
 
-
-
-
-        {{-- <div class="w-full h-full bg-white flex center justify-center">
-            <div class="center">
-                <h1 class="text-black text-6xl md:text-8xl lg:text-8xl py-6" style="font-family: Sche">{{ $business->name }}</h1>
+            {{-- Scroll indicator --}}
+            <div class="scroll-hint">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
             </div>
-        </div> --}}
 
-
-        {{-- Very good Metodo --}}
-        {{-- <video id="my-video" class="video-js w-full" controls preload="auto" width="auto" height="600" data-setup="{}" autoplay="on">
-            <p class="text-black text-6xl md:text-8xl lg:text-8xl py-6" style="font-family: Sche">{{ $business->name }}</p>
-            <source src="" type='video/mp4'>
-        </video> --}}
-
-        {{-- <div class="media">
-            <div class="media-body">
-                <iframe width="560" height="315" src="" frameborder="0" allowfullscreen>
-                </iframe>
-            </div>
-        </div> --}}
-
-
-    </section>
-
-
-    {{-- SECCTION 3 - Articles - Contenido con 4 articulos --}}
-    <section class="mt-6" style="{{ $active3 == 'ACTIVE' ? '' : 'display:none' }}">
-        <h1 class="text-gray-800 text-center text-4xl mb-6 font-bold"
-            style="my-6 font-family: proxima-nova, sans-serif;font-weight: 800;font-style: normal">
-            {{ $section3_note2 }}
-        </h1>
-
-        <div {{-- max-w-7xl --}}
-            class="w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
-            {{-- ARTICULO 1 --}}
-            <article>
-                <figure>
-
-                    <a href="gallery"><img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
-                            src="{{ Storage::url($article1) }}" alt="article1"></a>
-
-                    <header class="mt-2">
-                        <a href="gallery">
-                            <h1 class="text-center text-xl text-gray-700">{{ $name_article1 }}</h1>
-                        </a>
-                    </header>
-
-                    <a href="gallery" class="mt-2">
-                        <p>{{ $description_article1 }}</p>
-                    </a>
-
-                </figure>
-            </article>
-
-            {{-- ARTICULO 2 --}}
-            <article>
-                <figure>
-                    <a href="gallery">
-                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
-                            src="{{ Storage::url($article2) }}" alt="article2">
-                    </a>
-
-                    <header class="mt-2">
-                        <a href="#">
-                            <h1 class="text-center text-xl text-gray-700">{{ $name_article2 }}</h1>
-                        </a>
-                    </header>
-                    <a href="#" class="mt-2">
-                        <p>{{ $description_article2 }}</p>
-                    </a>
-
-                </figure>
-            </article>
-
-            {{-- ARTICULO 3 --}}
-            <article>
-                <figure>
-                    <a href="gallery">
-                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
-                            src="{{ Storage::url($article3) }}" alt="article3">
-                    </a>
-                    <header class="mt-2">
-                        <a href="gallery">
-                            <h1 class="text-center text-xl text-gray-700">{{ $name_article3 }}</h1>
-                        </a>
-                    </header>
-                    <a href="gallery" class="mt-2">
-                        <p>{{ $description_article3 }}</p>
-                    </a>
-                </figure>
-            </article>
-
-            {{-- ARTICULO 4 --}}
-            <article>
-                <figure>
-
-                    <a href="gallery">
-                        <img class="rounded-sm lg:h-80 w-full object-cover opacity-100"
-                            src="{{ Storage::url($article4) }}" alt="article4">
-                    </a>
-
-                    <header class="mt-2">
-                        <h1 class="text-center text-xl text-gray-700">{{ $name_article4 }}</h1>
-                    </header>
-                    <p>{{ $description_article4 }}</p>
-                </figure>
-            </article>
         </div>
     </section>
 
 
-    {{-- SECCTION 4 - Type of Services --}}
-    <section class="my-24 mx-auto px-4 sm:px-6 lg:px-64" style="{{ $active4 == 'ACTIVE' ? '' : 'display:none' }}">
-        <h1 class="text-center text-3xl text-gray-600">{{ $section4_note2 }}</h1>
-        <p class="text-center text-gray-500 text-xl mb-6"> </p>
-
-        <div class="text-center">
-            <p class="text-lg">{{ $section4_desc }}</p>
-
-
-        </div>
-
-        {{-- Product Card --}}
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-            {{-- @foreach ($products as $product)
-                <x-product-card :product="$product" />
-            @endforeach --}}
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 2 — Video cinematográfico
+    ════════════════════════════════════════════════════════════ --}}
+    <section style="{{ $active2 == 'ACTIVE' ? '' : 'display:none' }}" class="video-wrap">
+        <video autoplay loop muted playsinline>
+            <source src="/img/video/morilee.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <div>
+                <p class="section-label fade-up">Momentos que perduran</p>
+                <h2 class="fade-up"
+                    style="font-family: var(--font-display);
+                           font-size: clamp(2.2rem, 6vw, 5.5rem);
+                           color: var(--color-white);
+                           line-height: 1.05;">
+                    {{ $business->name }}
+                </h2>
+                <p class="fade-up"
+                   style="font-family: var(--font-serif);
+                          font-size: clamp(1rem, 2vw, 1.4rem);
+                          font-style: italic;
+                          color: rgba(255,255,255,0.78);
+                          margin-top: 0.75rem;">
+                    {{ $business->slogan }}
+                </p>
+            </div>
         </div>
     </section>
 
 
-    {{-- SECCTION 5 - LargeImage A --}}
-    <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 3 — Galería de categorías
+    ════════════════════════════════════════════════════════════ --}}
+    <section class="py-24 px-4 sm:px-6 lg:px-16"
+             style="{{ $active3 == 'ACTIVE' ? '' : 'display:none' }}">
 
-        <section
-            class="mt-16 py-8 lg:py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
-            style="background-image: url('{{ Storage::url($largeImageA) }}')">
+        <div class="text-center mb-16 fade-up">
+            <p class="section-label">Nuestro Trabajo</p>
+            <h2 class="section-title gold-line">{{ $section3_note2 }}</h2>
+        </div>
 
-            <div class="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
-                <div class="w-full md:w-3/4 lg:w-1/2">
-                    <h1 class="text-white text-bold text-4xl lg:text-6xl justify-center font-Playfair Display SC">
-                        {{ $largeImageA_name }}</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 
-                    <p class="text-white font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                        {{ $largeImageA_desc }}
-                    </p>
-
+            <article class="gallery-card fade-up" style="transition-delay:.08s">
+                <img src="{{ Storage::url($article1) }}" alt="{{ $name_article1 }}">
+                <div class="gallery-overlay">
+                    <div class="gallery-line"></div>
+                    <h3 class="gallery-title">{{ $name_article1 }}</h3>
+                    <p class="gallery-desc">{{ $description_article1 }}</p>
                 </div>
-            </div>
+                <a href="gallery" class="absolute inset-0" aria-label="{{ $name_article1 }}"></a>
+            </article>
 
+            <article class="gallery-card fade-up" style="transition-delay:.18s">
+                <img src="{{ Storage::url($article2) }}" alt="{{ $name_article2 }}">
+                <div class="gallery-overlay">
+                    <div class="gallery-line"></div>
+                    <h3 class="gallery-title">{{ $name_article2 }}</h3>
+                    <p class="gallery-desc">{{ $description_article2 }}</p>
+                </div>
+                <a href="gallery" class="absolute inset-0" aria-label="{{ $name_article2 }}"></a>
+            </article>
+
+            <article class="gallery-card fade-up" style="transition-delay:.28s">
+                <img src="{{ Storage::url($article3) }}" alt="{{ $name_article3 }}">
+                <div class="gallery-overlay">
+                    <div class="gallery-line"></div>
+                    <h3 class="gallery-title">{{ $name_article3 }}</h3>
+                    <p class="gallery-desc">{{ $description_article3 }}</p>
+                </div>
+                <a href="gallery" class="absolute inset-0" aria-label="{{ $name_article3 }}"></a>
+            </article>
+
+            <article class="gallery-card fade-up" style="transition-delay:.38s">
+                <img src="{{ Storage::url($article4) }}" alt="{{ $name_article4 }}">
+                <div class="gallery-overlay">
+                    <div class="gallery-line"></div>
+                    <h3 class="gallery-title">{{ $name_article4 }}</h3>
+                    <p class="gallery-desc">{{ $description_article4 }}</p>
+                </div>
+                <a href="gallery" class="absolute inset-0" aria-label="{{ $name_article4 }}"></a>
+            </article>
+
+        </div>
+    </section>
+
+
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 4 — Servicios
+    ════════════════════════════════════════════════════════════ --}}
+    <section class="py-24 px-4 sm:px-6 lg:px-16"
+             style="background: var(--color-cream); {{ $active4 == 'ACTIVE' ? '' : 'display:none' }}">
+
+        <div class="text-center mb-16 fade-up">
+            <p class="section-label">Lo que ofrezco</p>
+            <h2 class="section-title gold-line">{{ $section4_note2 }}</h2>
+            @if($section4_desc)
+                <p style="max-width:580px; margin:1.5rem auto 0; font-size:0.9rem;
+                           color:var(--color-gray); line-height:1.85;">
+                    {{ $section4_desc }}
+                </p>
+            @endif
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="service-card fade-up" style="transition-delay:.08s">
+                <div class="service-icon"><i class="fas fa-ring"></i></div>
+                <h3 class="service-title">Bodas</h3>
+                <p class="service-desc">Capturamos cada momento mágico de tu día especial con elegancia y emoción.</p>
+            </div>
+            <div class="service-card fade-up" style="transition-delay:.18s">
+                <div class="service-icon"><i class="fas fa-star"></i></div>
+                <h3 class="service-title">Quinceañeras</h3>
+                <p class="service-desc">Celebramos la transición a la madurez con fotografía artística y emotiva.</p>
+            </div>
+            <div class="service-card fade-up" style="transition-delay:.28s">
+                <div class="service-icon"><i class="fas fa-camera"></i></div>
+                <h3 class="service-title">Fashion</h3>
+                <p class="service-desc">Fotografía de moda con impacto visual y dirección artística de alto nivel.</p>
+            </div>
+            <div class="service-card fade-up" style="transition-delay:.38s">
+                <div class="service-icon"><i class="fas fa-heart"></i></div>
+                <h3 class="service-title">Familias</h3>
+                <p class="service-desc">Momentos únicos que cuentan la historia de tu familia para siempre.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 5 — Imagen Grande A (Parallax)
+    ════════════════════════════════════════════════════════════ --}}
+    <div style="{{ $active5 == 'ACTIVE' ? '' : 'display:none' }}">
+        <section class="parallax-section"
+                 style="background-image: url('{{ Storage::url($largeImageA) }}')">
+            <div class="parallax-overlay"></div>
+            <div class="parallax-content fade-up">
+                <p class="section-label">Historia &amp; Emoción</p>
+                <h2 style="font-family: var(--font-display);
+                           font-size: clamp(2rem,5vw,4.5rem);
+                           color: var(--color-white);
+                           line-height: 1.1;
+                           margin-bottom: 1rem;">
+                    {{ $largeImageA_name }}
+                </h2>
+                <div class="divider-gold"><span>✦</span></div>
+                <p style="font-size: 1rem;
+                          color: rgba(255,255,255,0.8);
+                          line-height: 1.85;
+                          max-width: 500px;">
+                    {{ $largeImageA_desc }}
+                </p>
+                <a href="gallery" class="btn-gold" style="margin-top: 2.5rem; display: inline-block;">
+                    Ver Galería
+                </a>
+            </div>
         </section>
     </div>
 
 
-    {{-- SECCTION 6 - Calendar --}}
-    <section style="{{ $active6 == 'ACTIVE' ? '' : 'display:none' }}">
-        <div>
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 6 — Calendario (Livewire)
+    ════════════════════════════════════════════════════════════ --}}
+    <section style="{{ $active6 == 'ACTIVE' ? '' : 'display:none' }}"
+             class="py-24 px-4"
+             style="background: var(--color-cream);">
+        <div class="text-center mb-12 fade-up">
+            <p class="section-label">Agenda tu sesión</p>
+            <h2 class="section-title gold-line">Disponibilidad</h2>
+        </div>
+        <div class="max-w-4xl mx-auto">
             @livewire('availability-calendar')
         </div>
     </section>
 
 
-    {{-- SECCTION 7 - Location --}}
-    <section style="{{ $active7 == 'ACTIVE' ? '' : 'display:none' }}">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-8">
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 7 — Ubicación y Contacto
+    ════════════════════════════════════════════════════════════ --}}
+    <section class="py-24"
+             style="{{ $active7 == 'ACTIVE' ? '' : 'display:none' }}">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+                    grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <div class="col-span-1 mt-8 opacity-75 hover:opacity-100">
-                <img src="{{ Storage::url($locationImage) }}" alt="locationImage" class="rounded-md"
-                    style="width:100%">
+            <div class="slide-left">
+                <img src="{{ Storage::url($locationImage) }}"
+                     alt="Estudio"
+                     class="location-img">
             </div>
 
-            <div class="col-span-2 ml-4">
+            <div class="slide-right">
+                <p class="section-label">Encuéntrame</p>
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">
+                    {{ $business->name }}
+                </h2>
+                <div class="divider-gold" style="margin-bottom: 2rem;"><span>✦</span></div>
 
-                <div class="ml-24 mt-16">
-                    <h1 class=""><span class="text-2xl ">{{ $business->name }}</span></h1>
-                    <p class="">{{ $business->address . ' ' . $business->city . ' ' . $business->zip }}</p>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p>{{ $business->address }}</p>
+                        <p>{{ $business->city }}, {{ $business->zip }}</p>
+                        <p style="font-size:0.8rem; margin-top:0.25rem; color:#999;">
+                            Chicago · Nebraska · Iowa · Kansas · Missouri · Miami · South Dakota, US
+                        </p>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <p>{{ $business->phone }}</p>
+                        @if($business->phone2)
+                            <p>{{ $business->phone2 }}</p>
+                        @endif
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <p>{{ $business->email }}</p>
                 </div>
 
-                <i class="far fa-map-marked hover:text-neutral-800 text-3xl mr-6"></i>
-                Chicago, Nebraska, Iowa, Kansas, Missouri, Miami, South Dakota, US.<br>
-
-                <i class="fa fa-phone fa-fw hover:text-neutral-800 text-3xl mr-6"></i> Phone: +1
-                {{ $business->phone }} / {{ $business->phone2 }}<br>
-
-                <i class="fa fa-envelope fa-fw hover:text-neutral-800 text-3xl mr-6 mb-4"></i> Email:
-                {{ $business->email }}<br>
-
-                {{-- <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note</p> --}}
-
+                <a href="gallery" class="btn-gold-dark"
+                   style="margin-top: 2rem; display: inline-block;">
+                    Agendar Sesión
+                </a>
             </div>
 
         </div>
     </section>
 
 
-    {{-- SECCTION 8 - LargeImage B --}}
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 8 — Imagen Grande B (Parallax)
+    ════════════════════════════════════════════════════════════ --}}
     <div style="{{ $active8 == 'ACTIVE' ? '' : 'display:none' }}">
-        <section
-            class="mt-16 py-8 lg:py-28 opacity-100 relative lg:bg-fixed bg-cover bg-center bg-no-repeat hover:opacity-100"
-            style="background-image: url('{{ Storage::url($largeImageB) }}')">
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-48">
-                <div class="w-full md:w-3/4 lg:w-1/2">
-                    <h1
-                        class="text-gray-100 text-bold text-4xl lg:text-6xl py-6 justify-center font-Playfair Display SC">
-                        {{ $largeImageB_name }}</h1>
-                    <h1 class="text-gray-200 text-bold text-2xl lg:text-4xl">
-                        {{ $largeImageB_note }}
-                    </h1>
-                    <p class="text-gray-100 font-bold text-lg mt-2 mb-4 backdrop-brightness-5">
-                        {{ $largeImageB_desc }}
-                    </p>
-
-                </div>
+        <section class="parallax-section"
+                 style="background-image: url('{{ Storage::url($largeImageB) }}')">
+            <div class="parallax-overlay"></div>
+            <div class="parallax-content fade-up"
+                 style="margin-left: auto; max-width: 680px; text-align: right; padding-right: 4rem;">
+                <p class="section-label" style="text-align: right;">Arte &amp; Pasión</p>
+                <h2 style="font-family: var(--font-display);
+                           font-size: clamp(2rem,5vw,4.5rem);
+                           color: var(--color-white);
+                           line-height: 1.1;
+                           margin-bottom: 0.75rem;">
+                    {{ $largeImageB_name }}
+                </h2>
+                <h3 style="font-family: var(--font-serif);
+                           font-size: clamp(1rem,2.5vw,1.6rem);
+                           color: var(--color-gold);
+                           font-style: italic;
+                           margin-bottom: 1rem;">
+                    {{ $largeImageB_note }}
+                </h3>
+                <div class="divider-gold" style="flex-direction: row-reverse;"><span>✦</span></div>
+                <p style="font-size: 1rem;
+                          color: rgba(255,255,255,0.8);
+                          line-height: 1.85;">
+                    {{ $largeImageB_desc }}
+                </p>
             </div>
-
         </section>
     </div>
 
 
-    {{-- SECCTION 9 - Specials of the week --}}
-    <section class="my-16" style="{{ $active9 == 'ACTIVE' ? '' : 'display:none' }}">
-        <h1 class="text-gray-600 text-center text-3xl mb-6 font-bold" style="font-family:Montserrat">SPECIALS OF THE
-            MONTH</h1>
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-8">
-            <article>
-                <figure>
-                    <a href="#"><img class="rounded-lg lg:h-60 w-full object-cover"
-                            src="{{ Storage::url($special1) }}" alt="special1"></a>
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 9 — Especiales del Mes
+    ════════════════════════════════════════════════════════════ --}}
+    <section class="py-24 px-4 sm:px-6 lg:px-16"
+             style="{{ $active9 == 'ACTIVE' ? '' : 'display:none' }}">
 
-                    <header class="mt-4">
-                        <a href="#">
-                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special1 }}</h1>
-                        </a>
-                    </header>
+        <div class="text-center mb-16 fade-up">
+            <p class="section-label">Ofertas Exclusivas</p>
+            <h2 class="section-title gold-line">Especiales del Mes</h2>
+        </div>
 
-                    <a href="#">
-                        <p>{{ $description_special1 }}</p>
-                    </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
 
-                </figure>
-            </article>
+            <div class="special-card fade-up" style="transition-delay:.08s">
+                <div class="special-card-img-wrap">
+                    <img src="{{ Storage::url($special1) }}" alt="{{ $name_special1 }}">
+                </div>
+                <div class="special-body">
+                    <span class="special-tag">Especial</span>
+                    <h3 class="special-title">{{ $name_special1 }}</h3>
+                    <p class="special-desc">{{ $description_special1 }}</p>
+                    <a href="#" class="link-gold">Ver más</a>
+                </div>
+            </div>
 
-            <article>
-                <figure>
-                    <img class="rounded-lg h-60 w-full object-cover" src="{{ Storage::url($special2) }}"
-                        alt="special2">
+            <div class="special-card fade-up" style="transition-delay:.18s">
+                <div class="special-card-img-wrap">
+                    <img src="{{ Storage::url($special2) }}" alt="{{ $name_special2 }}">
+                </div>
+                <div class="special-body">
+                    <span class="special-tag">Especial</span>
+                    <h3 class="special-title">{{ $name_special2 }}</h3>
+                    <p class="special-desc">{{ $description_special2 }}</p>
+                    <a href="#" class="link-gold">Ver más</a>
+                </div>
+            </div>
 
-                    <header class="mt-4">
-                        <a href="#">
-                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special2 }}</h1>
-                        </a>
-                    </header>
-
-                    <a href="#">
-                        <p>{{ $description_special2 }}</p>
-                    </a>
-
-                </figure>
-            </article>
-
-            <article>
-                <figure>
-                    <img class="rounded-lg h-60 w-full object-cover" src="{{ Storage::url($special3) }}"
-                        alt="special3">
-
-                    <header class="mt-4">
-                        <a href="#">
-                            <h1 class="text-center text-xl text-gray-700 font-bold">{{ $name_special3 }}</h1>
-                        </a>
-                    </header>
-
-                    <a href="#">
-                        <p>{{ $description_special3 }}</p>
-                    </a>
-
-                </figure>
-            </article>
-
+            <div class="special-card fade-up" style="transition-delay:.28s">
+                <div class="special-card-img-wrap">
+                    <img src="{{ Storage::url($special3) }}" alt="{{ $name_special3 }}">
+                </div>
+                <div class="special-body">
+                    <span class="special-tag">Especial</span>
+                    <h3 class="special-title">{{ $name_special3 }}</h3>
+                    <p class="special-desc">{{ $description_special3 }}</p>
+                    <a href="#" class="link-gold">Ver más</a>
+                </div>
+            </div>
 
         </div>
     </section>
 
 
-    {{-- SECCTION 10 - Contact Info --}}
+    {{-- ════════════════════════════════════════════════════════════
+         SECTION 10 — Footer elegante
+    ════════════════════════════════════════════════════════════ --}}
     <section style="{{ $active10 == 'ACTIVE' ? '' : 'display:none' }}">
-        <!-- component -->
-        {{-- <div class="flex items-end w-full min-h-screen bg-white">  ORIGINAL --}}
-        <div class="flex items-end w-full bg-white">
-            <footer class="w-full text-gray-700 bg-gray-100 body-font">
-                <div
-                    class="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
-                    <div class="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
-                        {{-- <a
-                            class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-                            <svg class="w-auto h-5 text-gray-900 fill-current" viewBox="0 0 202 69"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M57.44.672s6.656 1.872 6.656 5.72c0 0-1.56 2.6-3.744 6.552 8.424 1.248 16.744 1.248 23.816-1.976-1.352 7.904-12.688 8.008-26.208 6.136-7.696 13.624-19.656 36.192-19.656 42.848 0 .416.208.624.52.624 4.576 0 17.888-14.352 21.112-18.824 1.144-1.456 4.264.728 3.12 2.392C56.608 53.088 42.152 69 36.432 69c-4.472 0-8.216-5.928-8.216-10.4 0-6.552 11.752-28.08 20.28-42.952-9.984-1.664-20.176-3.64-27.976-3.848-13.936 0-16.64 3.536-17.576 6.032-.104.312-.52.52-.832.312-3.744-7.072-1.456-14.56 14.144-14.56 9.36 0 22.048 4.576 34.944 7.592C54.736 5.04 57.44.672 57.44.672zm46.124 41.08c1.144-1.456 4.264.728 3.016 2.392C100.236 53.088 85.78 69 80.06 69c-4.576 0-8.32-5.928-8.32-10.4v-.208C67.58 64.32 63.524 69 61.34 69c-4.472 0-8.944-4.992-8.944-11.856 0-10.608 15.704-33.072 24.96-33.072 4.992 0 7.384 2.392 8.528 4.576l2.6-4.576s6.656 1.976 6.656 5.824c0 0-13.312 24.336-13.312 30.056 0 .208 0 .624.52.624 4.472 0 17.888-14.352 21.216-18.824zm-40.56 18.72c2.184 0 11.752-13.312 17.368-22.048l4.16-7.488c-8.008-7.904-27.248 29.536-21.528 29.536zm57.564-38.168c-2.184 0-4.992-2.808-4.992-4.784 0-2.912 5.824-14.872 7.28-14.872 2.6 0 6.136 2.808 6.136 6.344 0 2.08-7.176 12.064-8.424 13.312zm-17.68 46.592c-4.472 0-8.216-5.928-8.216-10.4 0-6.656 16.744-34.528 16.744-34.528s6.552 1.976 6.552 5.824c0 0-13.312 24.336-13.312 30.056 0 .208.104.624.624.624 4.472 0 17.888-14.352 21.112-18.824 1.144-1.456 4.264.728 3.12 2.392-6.448 8.944-20.904 24.856-26.624 24.856zM147.244.672s6.656 1.872 6.656 5.72c0 0-25.792 43.784-25.792 53.56 0 .416.208.624.52.624 4.576 0 17.888-14.352 21.112-18.824 1.144-1.456 4.264.728 3.12 2.392C146.412 53.088 131.956 69 126.236 69c-4.472 0-8.216-5.928-8.216-10.4 0-10.4 29.224-57.928 29.224-57.928zM169.7 60.16c3.848-2.392 7.904-6.864 10.816-10.92 6.656-9.464 11.544-20.696 10.504-27.352-.312-3.432-.104-4.056 3.12-2.704 5.2 2.392 11.336 8.632 2.184 22.88-5.2 8.008-12.48 15.288-19.344 19.76-2.704 1.768-6.344 3.328-9.984 4.16-.52.416-1.04.728-1.456.936-1.872 1.352-4.264 2.08-7.592 2.08-14.664 0-16.848-12.272-16.848-16.016 0-2.392 3.224-4.68 4.784-3.744.208.104.312.416.312.624 0 2.808 1.872 13.104 9.984 13.104 7.904 0 3.432-18.304 2.288-27.144-1.456 2.288-3.432 4.992-5.616 8.32-2.6 3.744-5.72 1.456-4.784 0 5.824-8.424 9.152-13.832 11.856-18.616 1.248-2.08 3.328-3.328 6.448-3.328 2.704 0 5.824 3.016 6.864 4.784.312.52 0 1.04-.52 1.144a5.44 5.44 0 00-4.368 5.408c0 6.968 2.6 17.16 1.664 24.856l-.312 1.768z"
-                                    fill-rule="nonzero" />
-                            </svg>
-                        </a> --}}
-                        <p class="font-bold text-xl">{{ $business->name }}</p>
-                        <p class="mt-2 text-sm text-gray-500">Design, Code and Ship!</p>
-                        <div class="mt-4">
-                            <span class="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start">
-                                <a href="{{ $business->link }}"
-                                    class="text-gray-500 cursor-pointer hover:text-gray-700">
-                                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
-                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                                    </svg>
-                                </a>
-                                <a class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
-                                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
-                                        <path
-                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                <a href="{{ $business->link2 }}"
-                                    class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-8 h-8"
-                                        viewBox="0 0 24 24">
-                                        <rect width="20" height="20" x="2" y="2" rx="5"
-                                            ry="5"></rect>
-                                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                                    </svg>
-                                </a>
-                                <a href="{{ $business->link3 }}"
-                                    class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="0" class="w-5 h-5"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="none"
-                                            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
-                                        </path>
-                                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
-                                    </svg>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
-                        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                            <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-                                About</h2>
-                            <nav class="mb-10 list-none">
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Company</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Careers</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Blog</a>
-                                </li>
-                            </nav>
-                        </div>
-                        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                            <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-                                Support</h2>
-                            <nav class="mb-10 list-none">
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Contact Support</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Help Resources</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Release Updates</a>
-                                </li>
-                            </nav>
-                        </div>
-                        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                            <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-                                Platform
-                            </h2>
-                            <nav class="mb-10 list-none">
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Terms &amp; Privacy</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Pricing</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">FAQ</a>
-                                </li>
-                            </nav>
-                        </div>
-                        <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                            <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-                                Contact</h2>
-                            <nav class="mb-10 list-none">
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Send a Message</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a class="text-gray-500 cursor-pointer hover:text-gray-900">Request a Quote</a>
-                                </li>
-                                <li class="mt-3">
-                                    <a
-                                        class="text-gray-500 cursor-pointer hover:text-gray-900">{{ $business->phone }}</a>
-                                </li>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-300">
-                    <div class="container px-5 py-4 mx-auto">
-                        <p class="text-sm text-gray-700 capitalize xl:text-center">Powered by Nucleus-Technologies ©
-                            2024 All
-                            rights reserved </p>
-                        <p class="text-sm text-gray-700 capitalize lg:text-center">{{ $business->name }} is a
-                            Trademark with
-                            Copyright 2024 {{ $business->name }}. </p>
-                    </div>
-                </div>
-            </footer>
+        <footer class="footer-dark">
+            <div class="max-w-7xl mx-auto px-6 py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
 
-        </div>
+                    {{-- Brand --}}
+                    <div class="lg:col-span-2">
+                        <p style="font-family: var(--font-display);
+                                  font-size: 1.85rem;
+                                  color: var(--color-white);
+                                  margin-bottom: 0.4rem;">
+                            {{ $business->name }}
+                        </p>
+                        <p style="font-family: var(--font-serif);
+                                  font-style: italic;
+                                  color: var(--color-gold);
+                                  font-size: 1rem;
+                                  margin-bottom: 1.5rem;">
+                            {{ $business->slogan }}
+                        </p>
+                        <p style="font-size: 0.85rem;
+                                  color: rgba(255,255,255,0.4);
+                                  line-height: 1.85;
+                                  max-width: 310px;
+                                  margin-bottom: 2rem;">
+                            Fotografía de arte para bodas, quinceañeras, fashion y familias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="{{ $business->link }}" aria-label="Facebook">
+                                <svg fill="currentColor" class="w-4 h-4" viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                                </svg>
+                            </a>
+                            <a aria-label="Twitter">
+                                <svg fill="currentColor" class="w-4 h-4" viewBox="0 0 24 24">
+                                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                                </svg>
+                            </a>
+                            <a href="{{ $business->link2 }}" aria-label="Instagram">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                     stroke-linejoin="round" stroke-width="2"
+                                     class="w-4 h-4" viewBox="0 0 24 24">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+                                </svg>
+                            </a>
+                            <a href="{{ $business->link3 }}" aria-label="LinkedIn">
+                                <svg fill="currentColor" class="w-4 h-4" viewBox="0 0 24 24">
+                                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                    <circle cx="4" cy="4" r="2" stroke="none"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Navegación --}}
+                    <div>
+                        <h4 class="footer-heading">Navegación</h4>
+                        <a href="/" class="footer-link">Inicio</a>
+                        <a href="gallery" class="footer-link">Galería</a>
+                        <a href="#" class="footer-link">Servicios</a>
+                        <a href="#" class="footer-link">Sobre Mí</a>
+                        <a href="#" class="footer-link">Contacto</a>
+                    </div>
+
+                    {{-- Contacto --}}
+                    <div>
+                        <h4 class="footer-heading">Contacto</h4>
+                        <p class="footer-link">{{ $business->address }}</p>
+                        <p class="footer-link">{{ $business->city }}, {{ $business->zip }}</p>
+                        <p class="footer-link" style="margin-top: 0.75rem;">{{ $business->phone }}</p>
+                        <p class="footer-link">{{ $business->email }}</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="max-w-7xl mx-auto px-6
+                            flex flex-col sm:flex-row justify-between items-center gap-2">
+                    <p>© {{ date('Y') }} {{ $business->name }}. Todos los derechos reservados.</p>
+                    <p>Powered by Nucleus-Technologies</p>
+                </div>
+            </div>
+        </footer>
     </section>
+
+
+    {{-- ════════════════════════════════════════════════════════════
+         JS — Intersection Observer para animaciones de scroll
+    ════════════════════════════════════════════════════════════ --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            document.querySelectorAll('.fade-up, .slide-left, .slide-right')
+                    .forEach(el => observer.observe(el));
+        });
+    </script>
 
 </x-app-layout>
