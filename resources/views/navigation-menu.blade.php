@@ -251,6 +251,10 @@
                                         My Images
                                     </x-dropdown-link>
 
+                                    <x-dropdown-link href="{{ route('photography.my-images-2') }}">
+                                        My Images 2
+                                    </x-dropdown-link>
+
                                     {{-- SEGURIDAD - PERMISO --}}
                                     @can('Ver dashboard')
                                         {{-- MASTER CLASS - OJO Uso la ruta completa cuando uso route() --}}
@@ -352,6 +356,10 @@
                         {{-- @can('Photography') --}}
                         <x-responsive-nav-link class="text-sm" href="{{ route('photography.my-images') }}">
                             My Images
+                        </x-responsive-nav-link>
+
+                        <x-responsive-nav-link class="text-sm" href="{{ route('photography.my-images-2') }}">
+                            My Images 2
                         </x-responsive-nav-link>
                         {{-- @endcan --}}
 

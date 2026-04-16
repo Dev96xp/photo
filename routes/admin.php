@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Page\PageController;
 use App\Http\Controllers\Admin\Permission\PermissionController;
 use App\Http\Controllers\Admin\Project\ProjectController;
+use App\Http\Controllers\Admin\Session\SessionGalleryController;
 use App\Http\Controllers\Admin\Proof\ProofController;
 use App\Models\Business;
 use App\Models\Impost;
@@ -108,6 +109,12 @@ Route::get('expense/{expense}/upload_images', [ExpenseController::class,'upload_
 Route::post('expense/{expense}/save_images/', [ExpenseController::class,'save_images'])->name('expense.save_images');
 
 Route::get('project/index', [ProjectController::class,'index'])->name('project.index');
+Route::get('project/{project}/sessions', [ProjectController::class,'sessions'])->name('project.sessions');
+
+// Session Galleries
+Route::get('session/{session}/galleries', [SessionGalleryController::class,'index'])->name('session.galleries');
+Route::get('session/{session}/galleries/{gallery}/upload', [SessionGalleryController::class,'upload'])->name('session.gallery.upload');
+Route::post('session/{session}/galleries/{gallery}/save_images', [SessionGalleryController::class,'save_images'])->name('session.gallery.save_images');
 
 Route::get('corte/prnreport/{store_id}/{date1?}/{date2?}/{radio_select?}', [BookController::class,'prnreport'])->name('corte.prnreport');
 

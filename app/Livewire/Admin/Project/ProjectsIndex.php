@@ -19,11 +19,22 @@ class ProjectsIndex extends Component
     #[On('render-projects-list')] //ESCUCHADOR DE EVENTO
     public function render()
     {
-        $projects = Project::where('status', '<>', 'DELETED')   // Osea que, Excluye TODOS
+        $projects = Project::where('status', '<>', 'DELETED')
             ->orderBy($this->sort, 'desc')
             ->paginate(30);
 
-        return view('livewire.admin.project.projects-index', compact('projects'));
+        $archived = Project::where('status', 'DELETED')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return view('livewire.admin.project.projects-index', compact('projects', 'archived'));
+    }
+
+    public function restore(Project $project)
+    {
+        $project->status = 'ACTIVE';
+        $project->save();
+        $this->dispatch('render-projects-list');
     }
 
     // NUEVO 2025

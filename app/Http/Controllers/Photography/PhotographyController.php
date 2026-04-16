@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Photography;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\Project;
+use App\Models\SessionGallery;
 use Illuminate\Http\Request;
 
     // USO PARA FOTOGRAFIA, EN EL DROPDOWN(my images)
@@ -24,9 +26,33 @@ class PhotographyController extends Controller
         return view('dropdown.photography.index',compact('user', 'account', 'gallery'));
     }
 
+    public function index2()
+    {
+        $user = auth()->user();
+
+        $projects = Project::where('email', $user->email)
+            ->where('status', '!=', 'DELETED')
+            ->with(['sessions' => function($q) {
+                $q->where('status', '!=', 'DELETED')
+                  ->orderBy('sort_order')
+                  ->with(['galleries' => function($q) {
+                      $q->where('status', '!=', 'HIDE')
+                        ->with('images');
+                  }]);
+            }])
+            ->get();
+
+        return view('dropdown.photography.index2', compact('user', 'projects'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
+    public function gallery(SessionGallery $gallery)
+    {
+        return view('dropdown.photography.gallery', compact('gallery'));
+    }
+
     public function create()
     {
         //

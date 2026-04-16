@@ -15,6 +15,19 @@
 
         <x-slot name="content">
 
+            {{-- Selector de cliente existente --}}
+            <div class="mb-4 p-3 bg-indigo-50 border border-indigo-200 rounded-lg">
+                <x-label value="Fill from existing client (optional)" class="mb-1 text-indigo-700 font-semibold" />
+                <select wire:model.live="selected_user_id"
+                    wire:change="fillFromUser($event.target.value)"
+                    class="form-control w-full border-indigo-300 focus:border-indigo-500">
+                    <option value="">— Select a client to auto-fill —</option>
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }} — {{ $user->email }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="grid grid-cols-4 gap-4 mb-3">
                 <div class="col-span-2">
                     <x-label value="Project Name" class="mb-1" />

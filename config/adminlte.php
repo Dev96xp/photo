@@ -510,19 +510,19 @@ return [
             'submenu'     => [
 
                 [
-                    'text'        => 'Proyects',
+                    'text'        => 'Photograpics',
                     'icon'      => 'far fa-images',
                     'route'       => 'admin.project.index',  // La ruta ala que apunta
                     'icon_color'  => '',
                 ],
                 [
-                    'text'        => 'Proyects',
+                    'text'        => 'Proyects 1',
                     'icon'      => 'far fa-images',
                     'route'       => '',  // La ruta ala que apunta
                     'icon_color'  => '',
                 ],
                 [
-                    'text'        => 'Proyects',
+                    'text'        => 'Proyects 2',
                     'icon'      => 'far fa-images',
                     'route'       => '',  // La ruta ala que apunta
                     'icon_color'  => '',

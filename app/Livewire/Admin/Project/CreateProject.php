@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Project;
 
 use App\Models\Ids;
 use App\Models\Project;
+use App\Models\User;
 use Livewire\Component;
 
 class CreateProject extends Component
@@ -14,10 +15,31 @@ class CreateProject extends Component
     public $city, $state, $zip;
     public $description;
 
+    public $selected_user_id = '';  // Cliente seleccionado para auto-fill
 
     public function render()
     {
-        return view('livewire.admin.project.create-project');
+        $users = User::orderBy('name')->get(['id', 'name', 'email', 'phone', 'company', 'address', 'city', 'state', 'zip']);
+        return view('livewire.admin.project.create-project', compact('users'));
+    }
+
+    public function fillFromUser($userId)
+    {
+        if (!$userId) {
+            return;
+        }
+
+        $user = User::find($userId);
+        if (!$user) return;
+
+        $this->owner   = $user->name;
+        $this->email   = $user->email;
+        $this->phone   = $user->phone ?? '';
+        $this->company = $user->company ?? '';
+        $this->address = $user->address ?? '';
+        $this->city    = $user->city ?? '';
+        $this->state   = $user->state ?? '';
+        $this->zip     = $user->zip ?? '';
     }
 
     public function save()
@@ -53,7 +75,7 @@ class CreateProject extends Component
 
         ]);
 
-        $this->reset(['open', 'name', 'address', 'owner', 'company', 'phone', 'email', 'status', 'city', 'state', 'zip', 'description']);
+        $this->reset(['open', 'name', 'address', 'owner', 'company', 'phone', 'email', 'status', 'city', 'state', 'zip', 'description', 'selected_user_id']);
 
         // 6. En este caso para actualizar la lista de projectos
         $this->dispatch('render-projects-list');

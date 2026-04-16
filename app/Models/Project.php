@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PhotoSession;
 
 class Project extends Model
 {
@@ -16,4 +17,10 @@ class Project extends Model
 
     //Asignacion masiva
     protected $guarded = ['id'];
+
+    // Relacion uno a muchos: un proyecto tiene muchas sesiones fotograficas
+    public function sessions()
+    {
+        return $this->hasMany(PhotoSession::class)->orderBy('sort_order');
+    }
 }
