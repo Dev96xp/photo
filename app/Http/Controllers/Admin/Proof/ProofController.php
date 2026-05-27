@@ -51,12 +51,12 @@ class ProofController extends Controller
 
         // 1#. Validacion de la imagen
         $request->validate([
-            'file' => 'required|image'
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:10240'
         ]);
 
         // 2#. Se genera la ruta completa con nombre del archivo
-        $number_random = Str::random(10);       //Genera un numero random de 10 cifras
-        $nombre = $number_random . $request->file('file')->getClientOriginalName();  //Retorna  + el numero random + el nombre de la imagen
+        $extension = $request->file('file')->extension(); // Usa MIME type real, no el nombre del cliente
+        $nombre = Str::random(20) . '.' . $extension;
         $ruta = storage_path() . '/app/public/galleries/' . $nombre;   //Ruta completa con nombre
         // Solo checar - $ruta = storage_path() . '/app/public/products/' . $nombre;   //  Nueva ruta donde se gusradra el archivo
 

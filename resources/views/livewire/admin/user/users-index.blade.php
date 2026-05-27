@@ -1,201 +1,180 @@
-<div>
-    <div class="card">
-        {{-- card-header - boostrap --}}
-        <div class="card-header">
+<div class="py-2 px-0">
 
-            <div class="py-1 px-1 grid grid-cols-4 lg:grid-cols-7 gap-2">
+    {{-- Toolbar --}}
+    <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-4">
+        <div class="flex gap-2 flex-1 flex-wrap">
 
-                {{-- Selecionar TIENDA --}}
-                <div class="col-span-2">
+            {{-- Store selector --}}
+            <select wire:model.live="store_id"
+                class="form-control shadow-sm bg-gray-800 border-gray-700 text-gray-200 focus:border-indigo-500 focus:ring-indigo-500 w-auto">
+                <option value="" selected disabled>All Stores</option>
+                @foreach ($stores as $store)
+                    <option value="{{ $store->id }}">{{ $store->name }}</option>
+                @endforeach
+            </select>
 
-                    {{-- El select esta sincronizado con la propiedad color --}}
-                    <select wire:model.live="store_id" class="form-control w-full">
-                        {{-- Este es el valor por default --}}
-                        <option value="" selected disabled>Store</option>
+            {{-- Search --}}
+            <input wire:keydown="limpiar_page" wire:model="search"
+                placeholder="Search by name..."
+                class="form-control shadow-sm bg-gray-800 border-gray-700 text-gray-200 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500 flex-1">
+        </div>
 
-                        @foreach ($stores as $store)
-                            <option value="{{ $store->id }}">{{ $store->name }}</option>
-                        @endforeach
-                    </select>
+        {{-- Create user --}}
+        <div>
+            @livewire('admin.user.create-user')
+        </div>
+    </div>
 
-                </div>
+    {{-- Hidden inputs for DYMO --}}
+    <input type="hidden" id="lbCase"  wire:model="lbCase">
+    <input type="hidden" id="lbCode"  wire:model="lbCode">
+    <input type="hidden" id="lbName"  wire:model="lbName">
+    <input type="hidden" id="lbPhone" wire:model="lbPhone">
+    <input type="hidden" id="lbStore" wire:model="lbStore">
 
-                {{-- LIVEWIRE --}}
-                {{-- Boton para crear un usuario --}}
-                <div class="col-span-2">
-                    @livewire('admin.user.create-user')
-                </div>
+    @if ($users->count())
 
-                {{-- MASTER CLASS --}}
-                {{-- form-control - boostrap --}}
-                {{-- wire:keydown="limpiar_page" - Miestras que se escribe en buscar, se ejecute este metodo
-                va ayudar a facilitar la busqueda de un usuario atravez de todas las paginas de
-                paginacion, el metodo limpiar_page vive en el componente --}}
+        {{-- Desktop table --}}
+        <div class="hidden lg:block bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+            <table class="min-w-full">
+                <thead>
+                    <tr class="bg-gray-900 border-b border-gray-700">
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">ID</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Name</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Contact</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Address</th>
+                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Store</th>
+                        <th class="px-4 py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    @foreach ($users as $user)
+                        <tr wire:key="user-{{ $user->id }}" class="hover:bg-gray-750 transition-colors">
 
-                <div class="col-span-2">
-                    <input wire:keydown="limpiar_page" wire:model="search" placeholder="Escriba un nombre..."
-                        class="form-control w-full">
-                </div>
+                            {{-- ID --}}
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <span class="text-xs text-gray-500 font-mono">#{{ $user->id }}</span>
+                            </td>
 
-                {{-- bUSCADO POR QR Barcode
-                <div class="col-span-1">
-                    <input wire:keydown.enter="findCustomer" wire:model="qrcode" placeholder="scan qrcode..."
-                        class="form-control w-full" type="password">
-                </div>  --}}
+                            {{-- Name --}}
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-indigo-900 text-indigo-300 font-bold text-sm border border-indigo-700 flex-shrink-0">
+                                        {{ strtoupper(substr($user->name, 0, 1)) }}
+                                    </span>
+                                    <div>
+                                        <a href="{{ route('admin.pos.index', $user) }}"
+                                            class="text-sm font-semibold text-white hover:text-indigo-300 transition-colors">
+                                            {{ $user->name }}
+                                        </a>
+                                        @if(empty($user->store_id))
+                                            <div class="text-xs text-yellow-500">No store assigned</div>
+                                        @else
+                                            <div class="text-xs text-gray-400">{{ $user->store->name }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </td>
 
-                {{-- IMPRIMIR LABEL
-                <div class="col-span-1">
-                    <button id="printButton"
-                        class="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded text-uppercase text-sm">
-                        Print Label User
-                    </button>
-                </div>  --}}
+                            {{-- Contact --}}
+                            <td class="px-4 py-3">
+                                <div class="text-sm text-gray-300">{{ $user->phone }}</div>
+                                <div class="text-xs text-gray-500">{{ $user->email }}</div>
+                            </td>
 
-                <div>
-                    <input type="hidden" id="lbCase" name="tcase" wire:model="lbCase">
-                    <input type="hidden" id="lbCode" name="code" wire:model="lbCode">
-                    <input type="hidden" id="lbName" name="name" wire:model="lbName">
-                    <input type="hidden" id="lbPhone" name="phone" wire:model="lbPhone">
-                    <input type="hidden" id="lbStore" name="store" wire:model="lbStore">
-                    <label for="">{{ $lbCode }} - {{ $lbName }}</label>
-                </div>
+                            {{-- Address --}}
+                            <td class="px-4 py-3">
+                                <div class="text-sm text-gray-300">{{ $user->address }}</div>
+                                <div class="text-xs text-gray-500">{{ $user->city }}</div>
+                            </td>
 
+                            {{-- IPs --}}
+                            <td class="px-4 py-3">
+                                <div class="text-xs text-gray-400 font-mono">
+                                    @foreach ($user->ipxes as $ipx)
+                                        <span>{{ $ipx->ip }}</span>
+                                    @endforeach
+                                </div>
+                            </td>
+
+                            {{-- Actions --}}
+                            <td class="px-4 py-3 whitespace-nowrap text-right">
+                                <div class="flex items-center justify-end gap-2">
+
+                                    @livewire('admin.user.edit-user', ['user' => $user], key($user->id))
+
+                                    @can('User edit')
+                                        <a href="{{ route('admin.users.edit', $user) }}"
+                                            class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-blue-900 text-blue-300 border border-blue-700 hover:bg-blue-800 text-xs font-semibold transition-colors">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                            </svg>
+                                            Roles
+                                        </a>
+                                    @endcan
+
+                                    <button wire:click="select_user({{ $user->id }})"
+                                        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-gray-700 text-gray-300 border border-gray-600 hover:bg-gray-600 text-xs font-semibold transition-colors"
+                                        title="DYMO Label">
+                                        DYMO
+                                    </button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            {{-- Pagination --}}
+            <div class="px-4 py-3 bg-gray-900 border-t border-gray-700">
+                {{ $users->links() }}
             </div>
         </div>
 
-        {{-- Si existe algun usario en: $users, muestra la tabla --}}
-        @if ($users->count())
+        {{-- Mobile cards --}}
+        <div class="block lg:hidden space-y-3">
+            @foreach ($users as $user)
+                <div wire:key="mob-{{ $user->id }}" class="bg-gray-800 rounded-xl border border-gray-700 p-4">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-900 text-indigo-300 font-bold text-sm border border-indigo-700 flex-shrink-0">
+                                {{ strtoupper(substr($user->name, 0, 1)) }}
+                            </span>
+                            <div class="min-w-0">
+                                <a href="{{ route('admin.pos.index', $user) }}"
+                                    class="text-sm font-semibold text-white hover:text-indigo-300 truncate block">
+                                    {{ $user->name }}
+                                </a>
+                                <div class="text-xs text-gray-400">{{ $user->phone }}</div>
+                                <div class="text-xs text-gray-500">{{ $user->email }}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            @livewire('admin.user.edit-user', ['user' => $user], key('mob-' . $user->id))
+                            @can('User edit')
+                                <a href="{{ route('admin.users.edit', $user) }}"
+                                    class="inline-flex items-center px-2 py-1 rounded-md bg-blue-900 text-blue-300 border border-blue-700 hover:bg-blue-800 text-xs font-semibold transition-colors">
+                                    Roles
+                                </a>
+                            @endcan
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
-            {{-- METODO 1 Para pantalla grande --}}
-            <div class="card-body hidden lg:block">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Phone, email</th>
-                            <th>Addresss</th>
-                            <th>Store</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr wire:key="usuarios-{{ $user->id }}"> {{-- SUPER IMPORTANTE --}}
-                                <td>{{ $user->id }}</td>
-                                <td>
-                                    <a class="font-bold"
-                                        href="{{ route('admin.pos.index', $user) }}">{{ $user->name }}</a>
-                                    @if (empty($user->store_id))
-                                        <div class="text-indigo-600 hover:text-indigo-900">NOT definido</div>
-                                    @else
-                                        <div class="text-indigo-600 hover:text-indigo-900">{{ $user->store->name }}
-                                        </div>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div>
-                                        <span>
-                                            {{ $user->phone }}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            {{ $user->email }}
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <span>
-                                            {{ $user->address }}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            {{ $user->city }}
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="text-blue">
-                                        @foreach ($user->ipxes as $ipx)
-                                            {{ $ipx->ip }},
-                                        @endforeach
-                                    </div>
-                                </td>
-
-                                {{-- LIVEWIRE --}} {{-- BOTON - SI SIRVE PERO NO SE USA EN ESTE MOMENTO, PARA EDITAR CLIENTE --}}
-                                <td class="py-1" width="10px">
-                                    @livewire('admin.user.edit-user', ['user' => $user], key($user->id))
-                                </td>
-
-                                {{-- Aqui se agrega el ROLE a un usuario --}}
-                                @can('User edit')
-                                    <td width="10px">
-                                        <a class="btn btn-primary py-1" href="{{ route('admin.users.edit', $user) }}">Roles</a>
-                                    </td>
-                                @endcan
-
-                                <td class="py-4 cursor-pointer text-sm" wire:click="select_user({{ $user->id }})">
-                                    <div class="text-indigo-600 hover:text-indigo-900">
-                                        DYMO
-                                    </div>
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            {{-- METODO 2 Para pantalla pequeña --}}
-            <div class="card-body block lg:hidden">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr wire:key="queso-{{ $user->id }}">
-                                <td class="py-0">
-                                    <a class="font-bold"
-                                        href="{{ route('admin.pos.index', $user) }}">{{ $user->name }}</a>
-                                    <div>
-                                        <span>
-                                            {{ $user->phone }}
-                                        </span>
-                                    </div>
-                                </td>
-
-
-                                {{-- LIVEWIRE --}} {{-- BOTON - SI SIRVE PERO NO SE USA EN ESTE MOMENTO, PARA EDITAR CLIENTE --}}
-                                <td class="py-0" width="10px">
-                                    @livewire('admin.user.edit-user', ['user' => $user], key($user->id))
-                                </td>
-
-                                @can('User edit')
-                                    <td width="10px">
-                                        <a class="btn btn-primary py-0"
-                                            href="{{ route('admin.users.edit', $user) }}">Editar</a>
-                                    </td>
-                                @endcan
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            {{-- card-footer -  Esta es una clase de boostrap --}}
-            <div class="card-footer">
+            <div class="py-2">
                 {{ $users->links() }}
             </div>
-        @else
-            <div class="card-body"><strong>No hay registros</strong></div>
-        @endif
-    </div>
+        </div>
+
+    @else
+        <div class="bg-gray-800 rounded-xl border border-dashed border-gray-600 p-12 text-center">
+            <div class="text-5xl mb-4">👤</div>
+            <h3 class="text-lg font-semibold text-gray-300 mb-1">No clients found</h3>
+            <p class="text-sm text-gray-500">Try adjusting your search or create a new client.</p>
+        </div>
+    @endif
+
 </div>

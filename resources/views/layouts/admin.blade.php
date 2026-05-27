@@ -89,10 +89,7 @@
 
     @yield('js') {{-- Agrege esto para DropZone --}}
 
-    {{-- Bootstrap js v5.3 --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
+    {{-- Bootstrap 5 removido: AdminLTE ya incluye su propio Bootstrap en vendor --}}
 
     {{-- Date Picker Part 2/4 --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

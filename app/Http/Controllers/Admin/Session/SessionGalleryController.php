@@ -23,9 +23,12 @@ class SessionGalleryController extends Controller
 
     public function save_images(Request $request, PhotoSession $session, SessionGallery $gallery)
     {
-        $request->validate(['file' => 'required|image']);
+        $request->validate([
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:10240'
+        ]);
 
-        $nombre = Str::random(10) . $request->file('file')->getClientOriginalName();
+        $extension = $request->file('file')->extension(); // Usa MIME type real, no el nombre del cliente
+        $nombre = Str::random(20) . '.' . $extension;
         $ruta   = storage_path() . '/app/public/galleries/' . $nombre;
 
         Image::read($request->file('file'))

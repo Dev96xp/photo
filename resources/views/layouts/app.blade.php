@@ -66,12 +66,12 @@
 
     @stack('modals')
 
-    @livewireScripts
-
-    {{-- Bootstrap js v5.3 --}}
+    {{-- Bootstrap js v5.3 — cargado ANTES de Livewire/Alpine para evitar conflictos de eventos --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
+
+    @livewireScripts
 
     @yield('js')
 
