@@ -1,4 +1,30 @@
 <div class="mb-5">
+    @php $selectedImages = $gallery->images->where('status', 2); @endphp
+    @if($selectedImages->count())
+        <div class="bg-gray-800 rounded-xl border border-pink-500/40 p-4 mb-4">
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fas fa-heart text-pink-500"></i>
+                <h3 class="text-sm font-semibold text-gray-300">
+                    Imágenes seleccionadas por el cliente ({{ $selectedImages->count() }})
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                @foreach($selectedImages as $image)
+                    <div wire:key="selected-img-{{ $image->id }}">
+                        <div class="relative">
+                            <img class="w-full h-28 object-cover rounded-lg border border-pink-500/40"
+                                src="{{ Storage::url($image->url) }}" alt="">
+                            <i class="fas fa-heart text-pink-500 text-sm absolute bottom-1.5 right-1.5 drop-shadow"></i>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1 truncate" title="{{ $image->name ?? basename($image->url) }}">
+                            {{ $image->name ?? basename($image->url) }}
+                        </p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     @if($gallery->images->count())
         <div class="bg-gray-800 rounded-xl border border-gray-700 p-4 mb-4">
             <div class="flex items-center justify-between mb-3">
