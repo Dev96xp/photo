@@ -113,6 +113,7 @@ Route::get('project/{project}/sessions', [ProjectController::class,'sessions'])-
 
 // Session Galleries
 Route::get('session/{session}/galleries', [SessionGalleryController::class,'index'])->name('session.galleries');
+Route::get('session/{session}/galleries/print', [SessionGalleryController::class,'print'])->name('session.galleries.print');
 Route::get('session/{session}/galleries/{gallery}/upload', [SessionGalleryController::class,'upload'])->name('session.gallery.upload');
 Route::post('session/{session}/galleries/{gallery}/save_images', [SessionGalleryController::class,'save_images'])->name('session.gallery.save_images');
 

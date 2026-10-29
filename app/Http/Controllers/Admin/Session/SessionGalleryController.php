@@ -16,6 +16,13 @@ class SessionGalleryController extends Controller
         return view('admin.session.galleries', compact('session'));
     }
 
+    public function print(PhotoSession $session)
+    {
+        $session->load('galleries.images');
+
+        return view('admin.session.galleries-print', compact('session'));
+    }
+
     public function upload(PhotoSession $session, SessionGallery $gallery)
     {
         return view('admin.session.upload', compact('session', 'gallery'));

@@ -43,6 +43,13 @@
                     <div class="text-xs text-gray-400 uppercase">Galleries</div>
                 </div>
                 @livewire('admin.session.create-session-gallery', ['session' => $session])
+                <a href="{{ route('admin.session.galleries.print', $session) }}" target="_blank"
+                    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-indigo-900 text-indigo-300 border border-indigo-700 hover:bg-indigo-800 text-xs font-semibold transition-colors">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    Print selected
+                </a>
             </div>
         </div>
     </div>
@@ -96,6 +103,10 @@
                             {{-- Images count --}}
                             <td class="px-4 py-3 hidden lg:table-cell">
                                 <span class="text-sm text-gray-300">{{ $gallery->images->count() }} photos</span>
+                                @php $selectedCount = $gallery->images->where('status', 2)->count(); @endphp
+                                <span class="block text-xs mt-1 {{ $selectedCount ? 'text-pink-400' : 'text-gray-500' }}">
+                                    <i class="fas fa-heart"></i> {{ $selectedCount }} selected
+                                </span>
                             </td>
 
                             {{-- Status --}}
